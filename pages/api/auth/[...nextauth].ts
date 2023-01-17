@@ -12,12 +12,8 @@ const options = {
       clientSecret: process.env.NEXTAUTH_SECRET
     })
   ],
-  adapter: PrismaAdapter(prisma),
-  secret: process.env.SECRET
+  adapter: PrismaAdapter(prisma)
 };
-
-console.log('process.env.GITHUB_ID', process.env.GITHUB_ID);
-console.log('process.env.GITHUB_SECRET', process.env.GITHUB_SECRET);
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;

@@ -19,7 +19,6 @@ export const BikesQuery = extendType({
     t.list.field('bikes', {
       type: 'Bike',
       async resolve(_parent, _args, ctx: Context) {
-        console.log(ctx.session);
         return ctx.prisma.bike.findMany();
       }
     });

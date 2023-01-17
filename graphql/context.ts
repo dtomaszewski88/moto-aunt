@@ -1,19 +1,23 @@
 import { PrismaClient } from '@prisma/client';
-import { Session } from 'next-auth/core/types';
-import { getSession } from 'next-auth/react';
 
 import prisma from '../lib/prisma';
 
-export type Context = {
-  prisma: PrismaClient;
-  session: Session | null;
+export type ContextReq = {
+  cookies: Record<string, string>;
 };
 
-export async function createContext(): Promise<Context> {
-  const session = await getSession();
+export type ContextArgs = {
+  req: ContextReq;
+};
+export type Context = {
+  prisma: PrismaClient;
+  sessionId?: string;
+};
 
+export async function createContext({ req }: ContextArgs): Promise<Context> {
+  const sessionId = req.cookies['next-auth.session-token'];
   return {
     prisma,
-    session
+    sessionId
   };
 }
