@@ -1,4 +1,3 @@
-
 module.exports = {
   extends: [
     'eslint:recommended',
@@ -27,6 +26,8 @@ module.exports = {
     'no-debugger': ['warn'],
     '@typescript-eslint/prefer-optional-chain': 'warn',
     '@typescript-eslint/no-empty-function': 'warn',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'no-empty-pattern': 'off',
@@ -60,4 +61,4 @@ module.exports = {
       version: 'detect'
     }
   }
-}
+};

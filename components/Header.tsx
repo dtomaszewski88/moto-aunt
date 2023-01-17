@@ -1,8 +1,12 @@
-import { Navbar } from 'flowbite-react';
+import { Button, Navbar } from 'flowbite-react';
 import Image from 'next/image';
+import Router from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 
 const Header: React.FC = () => {
+  const { data: session, status } = useSession();
+  console.log(session, status);
   return (
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand href='https://flowbite.com/'>
@@ -17,6 +21,11 @@ const Header: React.FC = () => {
           NextJS
         </span>
       </Navbar.Brand>
+      <div className='flex md:order-2'>
+        <Button onClick={() => Router.push('/api/auth/signin')}>Sign In</Button>
+        <Button onClick={() => signOut()}>Sign Out</Button>
+        <Navbar.Toggle />
+      </div>
     </Navbar>
   );
 };
