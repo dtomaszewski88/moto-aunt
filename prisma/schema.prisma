@@ -58,3 +58,11 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model Bike {
+  id      String @id @default(cuid())
+  make    String
+  model   String
+  year    Int
+  type    String
+}

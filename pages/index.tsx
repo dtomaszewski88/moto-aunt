@@ -1,7 +1,24 @@
+import { gql, useQuery } from '@apollo/client';
 import { Card } from 'flowbite-react';
 import Head from 'next/head';
 
+const ALL_BIKES_QUERY = gql`
+  query allBikesQuery {
+    bikes {
+      id
+      make
+      model
+      year
+      type
+    }
+  }
+`;
+
 export default function Home() {
+  const { data, error, loading } = useQuery(ALL_BIKES_QUERY);
+
+  console.log(data, error, loading);
+
   return (
     <>
       <Head>
