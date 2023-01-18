@@ -3,13 +3,29 @@
 
 
 type Bike {
+  cooling: String
+  displacement: String
+  dry_weight: String
+  engine: String
+  front_brakes: String
+  fuel_capacity: String
+  fuel_consumption: String
+  gearbox: String
   id: String
   make: String
   model: String
+  power: String
+  rear_brakes: String
+  seat_height: String
+  top_speed: String
+  torque: String
+  total_weight: String
+  transmission: String
   type: String
   year: Int
 }
 
 type Query {
+  bikeDetails(id: String!): Bike
   bikes(search: String): [Bike]
 }

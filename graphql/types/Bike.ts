@@ -1,5 +1,5 @@
 import { chain } from 'lodash';
-import { extendType, objectType, stringArg } from 'nexus';
+import { extendType, nonNull, objectType, stringArg } from 'nexus';
 
 import { Context } from 'graphql/context';
 
@@ -11,12 +11,48 @@ export const Bike = objectType({
     t.string('model');
     t.int('year');
     t.string('type');
+    t.string('displacement');
+    t.string('engine');
+    t.string('power');
+    t.string('torque');
+    t.string('top_speed');
+    t.string('cooling');
+    t.string('gearbox');
+    t.string('transmission');
+    t.string('fuel_consumption');
+    t.string('front_brakes');
+    t.string('rear_brakes');
+    t.string('dry_weight');
+    t.string('total_weight');
+    t.string('seat_height');
+    t.string('fuel_capacity');
   }
 });
 
 type BikesQueryArgs = {
   search?: string | null;
 };
+
+export const BikeDetailsQuery = extendType({
+  type: 'Query',
+  definition(t) {
+    t.field('bikeDetails', {
+      type: 'Bike',
+      args: {
+        id: nonNull(stringArg())
+      },
+      async resolve(_parent, args, ctx) {
+        const { id } = args;
+        console.log('bikeDetails resolver', id);
+        return ctx.prisma.bike.findUnique({
+          where: {
+            id
+          }
+        });
+      }
+    });
+  }
+});
 
 export const BikesQuery = extendType({
   type: 'Query',
@@ -29,9 +65,19 @@ export const BikesQuery = extendType({
 
       async resolve(_parent, args: BikesQueryArgs, ctx: Context) {
         const { search } = args;
+        const select = {
+          id: true,
+          make: true,
+          model: true,
+          year: true,
+          type: true
+        };
 
         if (!search) {
-          return ctx.prisma.bike.findMany({ take: 20 });
+          return ctx.prisma.bike.findMany({
+            take: 20,
+            select
+          });
         }
 
         const searchTerms = chain(search)
@@ -48,7 +94,8 @@ export const BikesQuery = extendType({
           where: {
             OR: searchTerms
           },
-          take: 10
+          take: 10,
+          select
         });
       }
     });

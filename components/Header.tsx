@@ -1,15 +1,19 @@
 import { Button, Navbar } from 'flowbite-react';
 import Image from 'next/image';
-import Router from 'next/router';
+import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 
+import HeaderLink from './HeaderLink';
+
 const Header: React.FC = () => {
-  const { data: session, status } = useSession();
-  console.log(session, status);
+  const router = useRouter();
+  const { data: session } = useSession();
+  const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
+
   return (
     <Navbar fluid={true} rounded={true}>
-      <Navbar.Brand href='https://flowbite.com/'>
+      <Navbar.Brand className='flex-1' href='https://flowbite.com/'>
         <Image
           alt='Flowbite Logo'
           className='mr-3 h-6 sm:h-9'
@@ -18,11 +22,18 @@ const Header: React.FC = () => {
           width={40}
         />
         <span className='self-center whitespace-nowrap text-xl font-semibold dark:text-white'>
-          NextJS
+          MotoAunt
         </span>
       </Navbar.Brand>
-      <div className='flex md:order-2'>
-        {!session && <Button onClick={() => Router.push('/api/auth/signin')}>Sign In</Button>}
+      <div className='flex justify-center flex-1'>
+        <Navbar.Collapse>
+          <HeaderLink href='/' isActive={isActive('/')}>
+            Home
+          </HeaderLink>
+        </Navbar.Collapse>
+      </div>
+      <div className='flex md:order-2 flex-1 justify-end'>
+        {!session && <Button onClick={() => router.push('/api/auth/signin')}>Sign In</Button>}
         {session && <Button onClick={() => signOut()}>Sign Out</Button>}
         <Navbar.Toggle />
       </div>

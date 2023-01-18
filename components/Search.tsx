@@ -1,6 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Card, Spinner, TextInput } from 'flowbite-react';
+import Link from 'next/link';
 import { NexusGenObjects } from 'nexus-typegen';
 import { ChangeEventHandler, useState } from 'react';
 
@@ -19,10 +20,10 @@ const SEARCH_BIKES_QUERY = gql`
 export default function Search() {
   const [search, setSearch] = useState('');
 
-  const { data, error, loading } = useQuery<{ bikes: NexusGenObjects['Bike'][] }>(
-    SEARCH_BIKES_QUERY,
-    { variables: { search }, skip: search.length < 3 }
-  );
+  const { data, loading } = useQuery<{ bikes: NexusGenObjects['Bike'][] }>(SEARCH_BIKES_QUERY, {
+    variables: { search },
+    skip: search.length < 3
+  });
 
   const handleSetSearch: ChangeEventHandler<HTMLInputElement> = (evt) =>
     setSearch(evt.target.value);
@@ -44,12 +45,20 @@ export default function Search() {
         {!loading && <MagnifyingGlassIcon className='w-8 h-8 text-blue-700' />}
       </div>
       {data && (
-        <Card className='absolute mt-2 left-0 right-0'>
+        <div className='absolute mt-2 left-0 right-0 px-0 bg-white rounded-md shadow-md py-2'>
           {isEmptyResult && <p className='text-xl'>No results</p>}
-          {data?.bikes?.map((bike) => (
-            <div key={bike.id}>{`${bike.year} ${bike.make} ${bike.model}`}</div>
-          ))}
-        </Card>
+          {!isEmptyResult && (
+            <ul>
+              {data?.bikes?.map((bike) => (
+                <li key={bike.id}>
+                  <Link className='block px-4 py-2 hover:bg-blue-100' href={`/bikes/${bike.id}`}>
+                    <span>{`${bike.year} ${bike.make} ${bike.model}`}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       )}
     </div>
   );

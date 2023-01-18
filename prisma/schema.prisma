@@ -65,4 +65,19 @@ model Bike {
   model   String
   year    Int
   type    String
+  displacement String?
+  engine String?
+  power String?
+  torque String?
+  top_speed String?
+  cooling String?
+  gearbox String?
+  transmission String?
+  fuel_consumption String?
+  front_brakes String?
+  rear_brakes String?
+  dry_weight String?
+  total_weight String?
+  seat_height String?
+  fuel_capacity String?
 }
