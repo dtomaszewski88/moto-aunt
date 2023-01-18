@@ -22,8 +22,8 @@ const Header: React.FC = () => {
         </span>
       </Navbar.Brand>
       <div className='flex md:order-2'>
-        <Button onClick={() => Router.push('/api/auth/signin')}>Sign In</Button>
-        <Button onClick={() => signOut()}>Sign Out</Button>
+        {!session && <Button onClick={() => Router.push('/api/auth/signin')}>Sign In</Button>}
+        {session && <Button onClick={() => signOut()}>Sign Out</Button>}
         <Navbar.Toggle />
       </div>
     </Navbar>

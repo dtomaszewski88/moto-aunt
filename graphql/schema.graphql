@@ -11,5 +11,5 @@ type Bike {
 }
 
 type Query {
-  bikes: [Bike]
+  bikes(search: String): [Bike]
 }

@@ -2,7 +2,8 @@ import { PrismaClient } from '@prisma/client';
 import { chain } from 'lodash';
 import { pick } from 'lodash/fp';
 
-import data from '../data/bmw.json';
+import data1 from '../data/bmw30.json';
+import data2 from '../data/yamaha30.json';
 
 const prisma = new PrismaClient();
 
@@ -14,7 +15,7 @@ type SeedBikeData = {
 };
 
 async function main() {
-  const seedData = chain(data)
+  const seedData = chain([...data1, ...data2])
     .map((item) => ({ ...item, year: parseInt(item.year) }))
     .map(pick(['make', 'model', 'year', 'type']))
     .value() as SeedBikeData[];
