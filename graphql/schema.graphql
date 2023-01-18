@@ -2,7 +2,15 @@
 ### Do not make changes to this file directly
 
 
+type Auction {
+  id: String!
+  link: String
+  price: Float
+}
+
 type Bike {
+  auctions: [Auction]
+  auctionsCount: Int
   cooling: String
   displacement: String
   dry_weight: String
@@ -11,7 +19,7 @@ type Bike {
   fuel_capacity: String
   fuel_consumption: String
   gearbox: String
-  id: String
+  id: String!
   make: String
   model: String
   power: String

@@ -80,4 +80,13 @@ model Bike {
   total_weight String?
   seat_height String?
   fuel_capacity String?
+  auctions Auction[]
+}
+
+model Auction {
+  id     String @id @default(cuid())
+  bike   Bike @relation(fields: [bikeId], references: [id])
+  bikeId String
+  link String
+  price Float
 }

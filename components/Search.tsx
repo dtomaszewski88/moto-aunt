@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
-import { Card, Spinner, TextInput } from 'flowbite-react';
+import { Badge, Spinner, TextInput } from 'flowbite-react';
 import Link from 'next/link';
 import { NexusGenObjects } from 'nexus-typegen';
 import { ChangeEventHandler, useState } from 'react';
@@ -13,6 +13,7 @@ const SEARCH_BIKES_QUERY = gql`
       model
       year
       type
+      auctionsCount
     }
   }
 `;
@@ -51,8 +52,11 @@ export default function Search() {
             <ul>
               {data?.bikes?.map((bike) => (
                 <li key={bike.id}>
-                  <Link className='block px-4 py-2 hover:bg-blue-100' href={`/bikes/${bike.id}`}>
+                  <Link
+                    className='flex px-4 py-2 hover:bg-blue-50 justify-between items-center'
+                    href={`/bikes/${bike.id}`}>
                     <span>{`${bike.year} ${bike.make} ${bike.model}`}</span>
+                    <Badge color='success'>{bike.auctionsCount} Offers</Badge>
                   </Link>
                 </li>
               ))}

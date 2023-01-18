@@ -3,10 +3,12 @@ import { extendType, nonNull, objectType, stringArg } from 'nexus';
 
 import { Context } from 'graphql/context';
 
+import { Auction } from './Auction';
+
 export const Bike = objectType({
   name: 'Bike',
   definition(t) {
-    t.string('id');
+    t.nonNull.string('id');
     t.string('make');
     t.string('model');
     t.int('year');
@@ -26,6 +28,38 @@ export const Bike = objectType({
     t.string('total_weight');
     t.string('seat_height');
     t.string('fuel_capacity');
+    t.field('auctionsCount', {
+      type: 'Int',
+      async resolve(_parent, _args, ctx) {
+        const result = await ctx.prisma.bike.findUnique({
+          where: {
+            id: _parent.id as string
+          },
+          include: {
+            _count: {
+              select: { auctions: true }
+            }
+          }
+        });
+        return result?._count.auctions ?? null;
+      }
+    });
+    t.list.field('auctions', {
+      type: Auction,
+      async resolve(_parent, _args, ctx) {
+        return ctx.prisma.bike
+          .findUnique({
+            where: {
+              id: _parent.id as string
+            }
+          })
+          .auctions({
+            orderBy: {
+              price: 'asc'
+            }
+          });
+      }
+    });
   }
 });
 
@@ -43,7 +77,6 @@ export const BikeDetailsQuery = extendType({
       },
       async resolve(_parent, args, ctx) {
         const { id } = args;
-        console.log('bikeDetails resolver', id);
         return ctx.prisma.bike.findUnique({
           where: {
             id

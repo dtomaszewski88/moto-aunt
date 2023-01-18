@@ -1,6 +1,9 @@
+import { rand, randNumber, randSlug, randUrl, seed } from '@ngneat/falso';
 import { PrismaClient } from '@prisma/client';
-import { chain } from 'lodash';
+
+import { chain, times } from 'lodash';
 import { pick } from 'lodash/fp';
+import { v4 as id } from 'uuid';
 
 import data1 from '../data/bmw30.json';
 import data2 from '../data/yamaha30.json';
@@ -16,6 +19,7 @@ type SeedBikeData = {
   fuel_capacity: string;
   fuel_consumption: string;
   gearbox: string;
+  id: string;
   make: string;
   model: string;
   power: string;
@@ -29,11 +33,25 @@ type SeedBikeData = {
   year: number;
 };
 
+type SeedAuctionData = {
+  bikeId: string;
+  id: string;
+  link: string;
+  price: number;
+};
+
 async function main() {
-  const seedData = chain([...data1, ...data2])
-    .map((item) => ({ ...item, year: parseInt(item.year) }))
+  seed('some-constant-seed');
+
+  const auctionDomains = randUrl({ length: 10 });
+
+  const bikeSeedData = chain([...data1, ...data2])
+    .shuffle()
+    .slice(0, 2)
+    .map((item) => ({ ...item, year: parseInt(item.year), id: id() }))
     .map(
       pick([
+        'id',
         'make',
         'model',
         'year',
@@ -57,9 +75,34 @@ async function main() {
     )
     .value() as SeedBikeData[];
 
-  await prisma.bike.createMany({
-    data: seedData
+  const auctionSeedData = chain(bikeSeedData)
+    .reduce<SeedAuctionData[]>((result, current) => {
+      const auctionCount = randNumber({ min: 5, max: 15 });
+      const basePrice = randNumber({ min: 1000, max: 20000 });
+      times(auctionCount, () => {
+        result.push({
+          id: id(),
+          bikeId: current.id,
+          link: `${rand(auctionDomains)}/${randSlug()}`,
+          price: basePrice * randNumber({ min: 0.5, max: 1.5, fraction: 3 })
+        });
+      });
+      return result;
+    }, [])
+    .value();
+
+  console.log(`SEEDING BIKE TABLE WITH ${bikeSeedData.length} records`);
+  const bikes = await prisma.bike.createMany({
+    data: bikeSeedData
   });
+
+  console.log(`SEEDED: `, bikes);
+
+  console.log(`SEEDING AUCTIONS TABLE WITH ${auctionSeedData.length} records`);
+  const auctions = await prisma.auction.createMany({
+    data: auctionSeedData
+  });
+  console.log(`SEEDED: `, auctions);
 }
 
 main()
