@@ -65,6 +65,7 @@ model Bike {
   model   String
   year    Int
   type    String
+  imageUrl String?
   displacement String?
   engine String?
   power String?
@@ -87,6 +88,9 @@ model Auction {
   id     String @id @default(cuid())
   bike   Bike @relation(fields: [bikeId], references: [id])
   bikeId String
+  imageUrl String?
+  createdOn DateTime
+  domain String
   link String
   price Float
 }

@@ -1,11 +1,10 @@
 import { gql } from '@apollo/client';
-
 import { GetServerSideProps } from 'next';
-
-import { NexusGenObjects } from 'nexus-typegen';
+import { NexusGenFieldTypes } from 'nexus-typegen';
 
 import React from 'react';
 
+import Auction from 'components/Bikes/Auction';
 import Spec from 'components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from 'lib/apollo';
@@ -14,6 +13,7 @@ const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {
     bikeDetails(id: $id) {
       id
+      imageUrl
       make
       model
       year
@@ -37,6 +37,9 @@ const BIKE_DETAILS_QUERY = gql`
         id
         link
         price
+        imageUrl
+        createdOn
+        domain
       }
     }
   }
@@ -55,25 +58,37 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     variables: { id: params?.id }
   });
 
+  if (!data.bikeDetails) {
+    return {
+      notFound: true
+    };
+  }
+
   return addApolloState(apolloClient, {
     props: { bikeDetails: data.bikeDetails }
   });
 };
 
 type BikeDetailsProps = {
-  bikeDetails: NexusGenObjects['Bike'];
+  bikeDetails: NexusGenFieldTypes['Bike'];
 };
 
 const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
-  //   console.log(bikeDetails);
   return (
     <article className='flex items-center flex-col'>
       <h1 className='text-2xl font-semibold text-blue-900 mt-4 mb-12'>
-        {`${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`}
+        {`Top Deals for ${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`}
       </h1>
-      {bikeDetails?.auctions?.map((auction) => {
-        return <div key={auction.id}>{auction.link}</div>;
-      })}
+      <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
+        {bikeDetails?.auctions?.slice(0, 6).map((auction) => {
+          if (!auction) {
+            return null;
+          }
+
+          return <Auction auction={auction} key={auction.id} model={bikeDetails.model} />;
+        })}
+      </section>
+      <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Technical Specs</h2>
       <Spec bikeDetails={bikeDetails} />
     </article>
   );

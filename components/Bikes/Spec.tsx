@@ -1,11 +1,11 @@
 import Image from 'next/image';
 
-import { NexusGenObjects } from 'nexus-typegen';
+import { NexusGenFieldTypes } from 'nexus-typegen';
 
 import React from 'react';
 
 type BikeDetailsProps = {
-  bikeDetails: NexusGenObjects['Bike'];
+  bikeDetails: NexusGenFieldTypes['Bike'];
 };
 
 const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
@@ -15,7 +15,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
         alt={bikeDetails.model ?? ''}
         className='rounded-tr-md rounded-tl-md lg:rounded-tr-none lg:rounded-bl-md lg:col-span-6 col-span-12 width-full'
         height={400}
-        src='/images/bike01.png'
+        src={`/images/${bikeDetails.imageUrl}`}
         width={600}
       />
       <div className='grid lg:grid-cols-12 grid-cols-6 text-sm lg:text-xs lg:px-0 lg:col-span-6 col-span-12 justify-items-stretch'>

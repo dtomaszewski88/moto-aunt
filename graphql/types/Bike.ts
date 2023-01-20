@@ -20,6 +20,7 @@ export const Bike = objectType({
     t.string('top_speed');
     t.string('cooling');
     t.string('gearbox');
+    t.string('imageUrl');
     t.string('transmission');
     t.string('fuel_consumption');
     t.string('front_brakes');

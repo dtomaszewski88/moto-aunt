@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 
   return (
     <Navbar fluid={true} rounded={true}>
-      <Navbar.Brand className='flex-1' href='https://flowbite.com/'>
+      <Navbar.Brand className='flex-1'>
         <Image
           alt='Flowbite Logo'
           className='mr-3 h-6 sm:h-9'
