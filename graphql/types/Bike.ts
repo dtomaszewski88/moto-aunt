@@ -56,8 +56,9 @@ export const Bike = objectType({
           })
           .auctions({
             orderBy: {
-              price: 'asc'
-            }
+              createdOn: 'asc'
+            },
+            take: 6
           });
       }
     });

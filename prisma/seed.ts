@@ -52,7 +52,7 @@ async function main() {
 
   const bikeSeedData = chain([...data1, ...data2])
     .shuffle()
-    .slice(0, 2)
+    .slice(0, 4)
     .map((item) => ({ ...item, year: parseInt(item.year), id: id(), imageUrl: rand(bikeImages) }))
     .map(
       pick([
@@ -83,7 +83,7 @@ async function main() {
 
   const auctionSeedData = chain(bikeSeedData)
     .reduce<SeedAuctionData[]>((result, current) => {
-      const auctionCount = randNumber({ min: 5, max: 15 });
+      const auctionCount = randNumber({ min: 5, max: 35 });
       const basePrice = randNumber({ min: 1000, max: 20000 });
       times(auctionCount, () => {
         const domain = rand(auctionDomains);
