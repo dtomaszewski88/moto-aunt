@@ -1,4 +1,4 @@
-import { extendType, nonNull, objectType, stringArg } from 'nexus';
+import { extendType, intArg, nonNull, objectType, stringArg } from 'nexus';
 
 export const Auction = objectType({
   name: 'Auction',
@@ -18,7 +18,8 @@ export const AuctionsQuery = extendType({
     t.list.field('auctions', {
       type: 'Auction',
       args: {
-        bikeId: nonNull(stringArg())
+        bikeId: nonNull(stringArg()),
+        page: intArg()
       },
       async resolve(_parent, args, ctx) {
         const { bikeId } = args;

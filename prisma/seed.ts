@@ -1,4 +1,4 @@
-import { rand, randNumber, randPastDate, randSlug, randUrl, seed } from '@ngneat/falso';
+import { rand, randDomainName, randNumber, randPastDate, randSlug, seed } from '@ngneat/falso';
 import { PrismaClient } from '@prisma/client';
 
 import { chain, times } from 'lodash';
@@ -48,7 +48,7 @@ async function main() {
   seed('some-constant-seed');
   const bikeImages = ['bike01.png'];
   const auctionImages = ['bike01.png'];
-  const auctionDomains = randUrl({ length: 10 });
+  const auctionDomains = randDomainName({ length: 10 });
 
   const bikeSeedData = chain([...data1, ...data2])
     .shuffle()
@@ -93,7 +93,7 @@ async function main() {
           imageUrl: rand(auctionImages),
           bikeId: current.id,
           domain: domain,
-          link: `${domain}/${randSlug()}`,
+          link: `https://${domain}/${randSlug()}`,
           price: basePrice * randNumber({ min: 0.5, max: 1.5, fraction: 3 }),
           createdOn: randPastDate().toISOString()
         });
