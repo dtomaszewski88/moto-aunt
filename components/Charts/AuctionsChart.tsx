@@ -2,33 +2,11 @@
 import { Chart as ChartJS } from 'chart.js';
 import 'chart.js/auto';
 import clsx from 'clsx';
-import { map, times } from 'lodash';
+import { map } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
 import { Chart } from 'react-chartjs-2';
 
-import resolveConfig from 'tailwindcss/resolveConfig';
-
-import tailwindConfig from 'tailwind.config.js';
-
-const fullConfig = resolveConfig(tailwindConfig);
-
-const twcolors = (fullConfig.theme?.colors as Record<string, string>) ?? {};
-
-type DataPoint = { label?: string; x: number; y: number };
-
-type AuctionData = {
-  color: {
-    name: string;
-    value: string;
-  };
-  domain: string;
-  points: DataPoint[];
-};
-
-interface AuctionsChartProps {
-  auctionsData: AuctionData[];
-  className?: string;
-}
+import { AuctionData } from './types';
 
 export const options = {
   responsive: true,
@@ -40,7 +18,12 @@ export const options = {
   }
 };
 
-export const AuctionsChart = (props: AuctionsChartProps) => {
+interface AuctionsChartProps {
+  auctionsData: AuctionData[];
+  className?: string;
+}
+
+export default function AuctionsChart(props: AuctionsChartProps) {
   const { auctionsData, className } = props;
   const chartRef = useRef<ChartJS>(null);
 
@@ -74,6 +57,4 @@ export const AuctionsChart = (props: AuctionsChartProps) => {
       <Chart data={chartData as any} options={options as any} ref={chartRef} type='doughnut' />
     </div>
   );
-};
-
-export default AuctionsChart;
+}

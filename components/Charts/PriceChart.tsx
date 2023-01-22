@@ -8,6 +8,8 @@ import { Chart } from 'react-chartjs-2';
 
 import type { ChartArea, ChartData } from 'chart.js';
 
+import { AuctionData, DataPoint } from './types';
+
 export const options = {
   responsive: true,
   maintainAspectRatio: false,
@@ -91,26 +93,15 @@ const getColors = (ctx: CanvasRenderingContext2D, area: ChartArea) => {
   };
 };
 
-type DataPoint = { label?: string; x: number; y: number };
-
-type AuctionData = {
-  color: {
-    name: string;
-    value: string;
-  };
-  domain: string;
-  points: DataPoint[];
-};
 interface PriceChartProps {
   auctionsData: AuctionData[];
   avgPriceData?: DataPoint[];
   className?: string;
-  pointsData?: DataPoint[];
   totalAvgData: DataPoint[];
 }
 
 export default function PriceChart(props: PriceChartProps) {
-  const { auctionsData, avgPriceData, className, pointsData, totalAvgData } = props;
+  const { auctionsData, avgPriceData, className, totalAvgData } = props;
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: []
@@ -118,7 +109,7 @@ export default function PriceChart(props: PriceChartProps) {
 
   useEffect(() => {
     const chart = chartRef.current;
-    if (!chart || !avgPriceData || !pointsData || !totalAvgData) {
+    if (!chart || !avgPriceData || !totalAvgData) {
       return;
     }
 
@@ -143,21 +134,6 @@ export default function PriceChart(props: PriceChartProps) {
     });
     const chartData = {
       datasets: [
-        // {
-        //   type: 'scatter' as any,
-        //   xAxisID: 'xPointAxis',
-        //   label: 'Auctions',
-        //   data: pointsData,
-        //   fill: true,
-        //   elements: {
-        //     point: {
-        //       radius: 5,
-        //       hoverRadius: 10,
-        //       borderWidth: 0,
-        //       backgroundColor: 'rgb(35,56,118)'
-        //     }
-        //   }
-        // },
         ...pointData,
         {
           borderDash: [5, 5],
@@ -193,7 +169,7 @@ export default function PriceChart(props: PriceChartProps) {
     };
 
     setChartData(chartData as any);
-  }, [avgPriceData, pointsData, totalAvgData, auctionsData]);
+  }, [avgPriceData, totalAvgData, auctionsData]);
 
   return (
     <div className={clsx(className, 'relative -mr-[10px] -ml-[10px] h-72')}>

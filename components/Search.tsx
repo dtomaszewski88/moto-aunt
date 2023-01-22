@@ -2,7 +2,7 @@ import { gql, useQuery } from '@apollo/client';
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import { Badge, Spinner, TextInput } from 'flowbite-react';
 import Link from 'next/link';
-import { NexusGenObjects } from 'nexus-typegen';
+import { NexusGenFieldTypes } from 'nexus-typegen';
 import { ChangeEventHandler, useState } from 'react';
 
 const SEARCH_BIKES_QUERY = gql`
@@ -21,7 +21,7 @@ const SEARCH_BIKES_QUERY = gql`
 export default function Search() {
   const [search, setSearch] = useState('');
 
-  const { data, loading } = useQuery<{ bikes: NexusGenObjects['Bike'][] }>(SEARCH_BIKES_QUERY, {
+  const { data, loading } = useQuery<{ bikes: NexusGenFieldTypes['Bike'][] }>(SEARCH_BIKES_QUERY, {
     variables: { search },
     skip: search.length < 3
   });
