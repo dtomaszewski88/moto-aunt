@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 import { NexusGenFieldTypes } from 'nexus-typegen';
 import React from 'react';
 
@@ -53,14 +54,16 @@ const BIKE_DETAILS_QUERY = gql`
   }
 `;
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { params } = context;
+  const apolloClient = initializeApollo(null, context);
+
   if (!params?.id) {
     return {
       notFound: true
     };
   }
 
-  const apolloClient = initializeApollo();
   const { data } = await apolloClient.query({
     query: BIKE_DETAILS_QUERY,
     variables: { id: params?.id }
@@ -83,26 +86,33 @@ type BikeDetailsProps = {
 };
 
 const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails }) => {
-  return (
-    <article className='flex items-center flex-col gap-8'>
-      <h1 className='text-2xl font-semibold text-blue-900 mt-4 mb-12'>
-        {`Latest Deals for ${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`}
-      </h1>
-      <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
-        {bikeDetails?.auctions?.slice(0, 6).map((auction) => {
-          if (!auction) {
-            return null;
-          }
+  const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
 
-          return <Auction auction={auction} key={auction.id} model={bikeDetails.model} />;
-        })}
-      </section>
-      <div className='max-w-6xl lg:w-[72rem] flex items-center flex-col gap-8'>
-        <PricingData auctions={auctions} />
-      </div>
-      <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Technical Specs</h2>
-      <Spec bikeDetails={bikeDetails} />
-    </article>
+  return (
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <article className='flex items-center flex-col gap-8'>
+        <h1 className='text-2xl font-semibold text-blue-900 mt-4 mb-12'>
+          {`Latest Deals for ${pageTitle}`}
+        </h1>
+        <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
+          {bikeDetails?.auctions?.slice(0, 6).map((auction) => {
+            if (!auction) {
+              return null;
+            }
+
+            return <Auction auction={auction} key={auction.id} model={bikeDetails.model} />;
+          })}
+        </section>
+        <div className='max-w-6xl lg:w-[72rem] flex items-center flex-col gap-8'>
+          <PricingData auctions={auctions} />
+        </div>
+        <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Technical Specs</h2>
+        <Spec bikeDetails={bikeDetails} />
+      </article>
+    </>
   );
 };
 

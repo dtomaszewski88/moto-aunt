@@ -1,8 +1,16 @@
-import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject, from } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject,
+  createHttpLink,
+  from
+} from '@apollo/client';
 
+import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
+import { GetServerSidePropsContext, NextPageContext } from 'next';
 import { useMemo } from 'react';
 
 import type { AppProps } from 'next/app';
@@ -21,22 +29,36 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
-const httpLink = new HttpLink({
-  uri: process.env.NEXT_PUBLIC_GRAPHQL_API_URL, // Server URL (must be absolute)
-  credentials: 'same-origin' // Additional fetch() options like `credentials` or `headers`
+const httpLink = createHttpLink({
+  uri: process.env.NEXT_PUBLIC_GRAPHQL_API_URL,
+  credentials: 'include'
 });
 
-function createApolloClient() {
-  return new ApolloClient({
-    ssrMode: typeof window === 'undefined',
-    link: from([errorLink, httpLink]),
-    cache: new InMemoryCache()
+type SSRContext = NextPageContext | GetServerSidePropsContext | null;
+
+const createApolloClient = (ctx?: SSRContext) => {
+  const ssrMode = typeof window === 'undefined';
+
+  const authLink = setContext((_, { headers }) => {
+    return {
+      headers: {
+        ...headers,
+        cookie: ssrMode ? ctx?.req?.headers.cookie : undefined
+      }
+    };
   });
-}
 
-export function initializeApollo(initialState = null) {
-  const _apolloClient = apolloClient ?? createApolloClient();
+  return new ApolloClient({
+    credentials: 'include',
+    link: from([errorLink, authLink, httpLink]),
+    cache: new InMemoryCache(),
+    ssrMode
+  });
+};
 
+export function initializeApollo(initialState = null, ctx?: SSRContext) {
+  const _apolloClient = apolloClient ?? createApolloClient(ctx);
+  // console.log('initializeApollo', ctx);
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
   if (initialState) {
