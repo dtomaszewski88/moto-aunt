@@ -11,13 +11,12 @@ import AuctionsTable from './AuctionsTable';
 import MainChartSummary from './MainChartHeader';
 import { getAuctionData, getAvgPriceData } from './utils';
 
-type PriocingDataProps = {
+type PricingDataProps = {
   auctions: NexusGenFieldTypes['Auction'][];
 };
 
-const PriocingData: React.FC<PriocingDataProps> = ({ auctions }) => {
+const PricingData: React.FC<PricingDataProps> = ({ auctions }) => {
   const now = useMemo(() => new Date(), []);
-
   const [chartFilter, setChartFilter] = useState<Record<string, boolean>>({});
 
   const auctionData = useMemo(() => getAuctionData(auctions, now), [auctions, now]);
@@ -48,7 +47,6 @@ const PriocingData: React.FC<PriocingDataProps> = ({ auctions }) => {
 
   return (
     <>
-      <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Price analysis</h2>
       <section className='max-w-6xl flex flex-wrap gap-4'>
         {auctionData.map((auctionGroup) => {
           return (
@@ -80,7 +78,7 @@ const PriocingData: React.FC<PriocingDataProps> = ({ auctions }) => {
       </section>
       <section className='grid max-w-6xl lg:w-[72rem] grid-cols-12 gap-8'>
         <AuctionsTable auctions={auctions} meanPrice={meanPrice} />
-        <div className='col-span-4 row-span-2'>
+        <div className='col-span-4 row-span-2 min-h-[28rem]'>
           <AuctionsChart auctionsData={filteredAuctionData} />
         </div>
       </section>
@@ -88,4 +86,4 @@ const PriocingData: React.FC<PriocingDataProps> = ({ auctions }) => {
   );
 };
 
-export default PriocingData;
+export default PricingData;

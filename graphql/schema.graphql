@@ -12,8 +12,8 @@ type Auction {
 }
 
 type Bike {
-  auctions: [Auction]
   auctionsCount: Int
+  auctionsRecent: [Auction]
   cooling: String
   displacement: String
   dry_weight: String

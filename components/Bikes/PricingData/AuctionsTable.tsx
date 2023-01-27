@@ -4,9 +4,9 @@ import {
   ArrowTrendingUpIcon
 } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
+import { format, parseISO } from 'date-fns';
 import { Button, Table } from 'flowbite-react';
 import { slice, times } from 'lodash';
-
 import Link from 'next/link';
 import { NexusGenFieldTypes } from 'nexus-typegen';
 import React, { useMemo, useState } from 'react';
@@ -63,7 +63,7 @@ const AuctionsTable: React.FC<AuctionsTableProps> = (props) => {
                 <Table.Row
                   className='bg-white dark:border-gray-700 dark:bg-gray-800'
                   key={auction.id}>
-                  <Table.Cell>{auction.createdOn}</Table.Cell>
+                  <Table.Cell>{format(parseISO(auction.createdOn), 'dd/MM/yyyy')}</Table.Cell>
                   <Table.Cell>{formatter.format(auction?.price as number)}</Table.Cell>
                   <Table.Cell
                     className={clsx('font-bold flex items-center gap-2', {

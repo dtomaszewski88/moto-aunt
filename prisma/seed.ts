@@ -87,7 +87,6 @@ async function main() {
       const basePrice = randNumber({ min: 1000, max: 20000 });
       times(auctionCount, () => {
         const domain = rand(auctionDomains);
-
         result.push({
           id: id(),
           imageUrl: rand(auctionImages),

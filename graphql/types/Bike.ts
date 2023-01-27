@@ -45,7 +45,7 @@ export const Bike = objectType({
         return result?._count.auctions ?? null;
       }
     });
-    t.list.field('auctions', {
+    t.list.field('auctionsRecent', {
       type: Auction,
       async resolve(_parent, _args, ctx) {
         return ctx.prisma.bike

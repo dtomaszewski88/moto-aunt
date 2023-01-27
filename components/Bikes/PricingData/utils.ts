@@ -1,6 +1,6 @@
+import { rand, randDomainName, randNumber, randPastDate, randSlug, seed } from '@ngneat/falso';
 import { differenceInDays, format, parseISO, sub } from 'date-fns';
 import { chain, findLast, map, meanBy, times } from 'lodash';
-
 import { NexusGenFieldTypes } from 'nexus-typegen';
 
 import resolveConfig from 'tailwindcss/resolveConfig';
@@ -27,6 +27,26 @@ export const colors = [
   { value: twcolors['fuchsia']['500'], name: 'fuchsia-500' },
   { value: twcolors['rose']['500'], name: 'rose-500' }
 ];
+
+export const getFakeAuctions = (bikeId: string) => {
+  seed(bikeId);
+  const auctionDomains = randDomainName({ length: 10 });
+  const auctionCount = randNumber({ min: 20, max: 50 });
+  const basePrice = randNumber({ min: 1000, max: 20000 });
+
+  return times(auctionCount, (index) => {
+    const domain = rand(auctionDomains);
+    return {
+      id: `bikeId-${index}`,
+      imageUrl: '',
+      bikeId: bikeId,
+      domain: domain,
+      link: `https://${domain}/${randSlug()}`,
+      price: basePrice * randNumber({ min: 0.5, max: 1.5, fraction: 3 }),
+      createdOn: randPastDate().toISOString()
+    };
+  });
+};
 
 export const getAuctionData = (auctions: NexusGenFieldTypes['Auction'][], baseDate: Date) => {
   return chain(auctions)

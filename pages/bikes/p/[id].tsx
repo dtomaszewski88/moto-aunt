@@ -1,16 +1,12 @@
 import { gql } from '@apollo/client';
-import { Button, Navbar } from 'flowbite-react';
-
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { unstable_getServerSession } from 'next-auth/next';
 import { NexusGenFieldTypes } from 'nexus-typegen';
 import React from 'react';
 
 import Auction from 'components/Bikes/Auction';
 import PricingData from 'components/Bikes/PricingData';
-import { getFakeAuctions } from 'components/Bikes/PricingData/utils';
 import Spec from 'components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from 'lib/apollo';
@@ -18,6 +14,14 @@ import { authOptions } from 'pages/api/auth/[...nextauth]';
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {
+    auctions(bikeId: $id) {
+      id
+      link
+      price
+      imageUrl
+      createdOn
+      domain
+    }
     bikeDetails(id: $id) {
       id
       imageUrl
@@ -54,6 +58,7 @@ const BIKE_DETAILS_QUERY = gql`
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { params, req, res } = context;
+
   if (!params?.id) {
     return {
       notFound: true
@@ -61,12 +66,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const session = await unstable_getServerSession(req, res, authOptions);
-
-  if (session) {
+  console.log('session', session);
+  if (!session) {
     return {
       redirect: {
-        basePath: true,
-        destination: `/bikes/p/${params.id}`,
+        destination: `/bikes/${params.id}`,
         status: 307
       }
     };
@@ -86,18 +90,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   return addApolloState(apolloClient, {
-    props: { bikeDetails: data.bikeDetails }
+    props: { bikeDetails: data.bikeDetails, auctions: data.auctions }
   });
 };
 
 type BikeDetailsProps = {
+  auctions: NexusGenFieldTypes['Auction'][];
   bikeDetails: NexusGenFieldTypes['Bike'];
 };
 
-const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
+const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails }) => {
   const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
-  const auctions = getFakeAuctions(bikeDetails.id);
-  const router = useRouter();
 
   return (
     <>
@@ -119,20 +122,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
         </section>
         <div className='max-w-6xl lg:w-[72rem] flex items-center flex-col gap-8'>
           <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Price analysis</h2>
-
-          <div className='relative flex items-center flex-col gap-8'>
-            <div className='absolute inset-0 z-50 flex justify-center items-start pt-40'>
-              <div className='bg-white p-4 shadow-md rounded-md justify-center items-center flex flex-col gap-8'>
-                <h3 className='text-lg font-semibold text-blue-900'>
-                  You need to be a registered user to see the price analysis
-                </h3>
-                <Button onClick={() => router.push('/api/auth/signin')}>Sign In</Button>
-              </div>
-            </div>
-            <div className='blur-[6px] select-none'>
-              <PricingData auctions={auctions} />
-            </div>
-          </div>
+          <PricingData auctions={auctions} />
         </div>
         <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Technical Specs</h2>
         <Spec bikeDetails={bikeDetails} />

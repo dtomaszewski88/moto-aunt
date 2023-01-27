@@ -21,8 +21,16 @@ export const AuctionsQuery = extendType({
         bikeId: nonNull(stringArg()),
         page: intArg()
       },
+      authorize: async (root, args, ctx) => {
+        const storedSession = await ctx.prisma.session.findUnique({
+          where: { sessionToken: ctx.sessionId ?? '' }
+        });
+
+        return Boolean(storedSession);
+      },
       async resolve(_parent, args, ctx) {
         const { bikeId } = args;
+
         return ctx.prisma.auction.findMany({
           where: {
             bikeId
