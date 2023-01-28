@@ -6,7 +6,9 @@ export const Auction = objectType({
     t.nonNull.string('id');
     t.string('link');
     t.string('imageUrl');
-    t.datetime('createdOn');
+    t.field('createdOn', {
+      type: 'DateTime'
+    });
     t.string('domain');
     t.float('price');
   }
