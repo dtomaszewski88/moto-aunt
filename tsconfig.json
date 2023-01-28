@@ -22,8 +22,12 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "env.d.ts"],
   "exclude": ["node_modules"],
   "ts-node": {
+    "files": true,
     "compilerOptions": {
       "module": "commonjs"
     }
-  }
+  },
+  "files": [
+    "./@types/nexus-typegen.d.ts",
+  ],
 }
