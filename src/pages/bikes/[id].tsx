@@ -1,5 +1,3 @@
-import { gql } from '@apollo/client';
-
 import { Button } from 'flowbite-react';
 
 import { map } from 'lodash';
@@ -15,52 +13,16 @@ import { getFakeAuctions } from '@/components/Bikes/PricingData/utils';
 import Spec from '@/components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from '@/lib/apollo';
-import prisma from '@/lib/prisma';
+import { getAllBikeIds, getBikeDetails } from '@/lib/prisma';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
-const BIKE_DETAILS_QUERY = gql`
-  query bikeDetailsQuery($id: String!) {
-    bikeDetails(id: $id) {
-      id
-      imageUrl
-      make
-      model
-      year
-      type
-      displacement
-      engine
-      power
-      torque
-      top_speed
-      cooling
-      gearbox
-      transmission
-      fuel_consumption
-      front_brakes
-      rear_brakes
-      dry_weight
-      total_weight
-      seat_height
-      fuel_capacity
-      auctionsRecent {
-        id
-        link
-        price
-        imageUrl
-        createdOn
-        domain
-      }
-    }
-  }
-`;
-
 export async function getStaticPaths() {
-  const bikes = await prisma.bike.findMany();
+  const bikes = await getAllBikeIds();
   const paths = map(bikes, ({ id }) => ({ params: { id } }));
 
   return {
     paths: paths,
-    fallback: false // can also be true or 'blocking'
+    fallback: 'blocking' // can also be true or 'blocking'
   };
 }
 
@@ -74,19 +36,16 @@ export const getStaticProps: GetServerSideProps = async (context) => {
 
   const apolloClient = initializeApollo(null, context);
 
-  const { data } = await apolloClient.query({
-    query: BIKE_DETAILS_QUERY,
-    variables: { id: params?.id }
-  });
+  const bikeDetails = await getBikeDetails(params.id as string);
 
-  if (!data.bikeDetails) {
+  if (!bikeDetails) {
     return {
       notFound: true
     };
   }
 
   return addApolloState(apolloClient, {
-    props: { bikeDetails: data.bikeDetails }
+    props: { bikeDetails }
   });
 };
 
