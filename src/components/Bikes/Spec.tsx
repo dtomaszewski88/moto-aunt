@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import { NexusGenFieldTypes } from 'nexus-typegen';
-
 import React from 'react';
+
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 type BikeDetailsProps = {
   bikeDetails: NexusGenFieldTypes['Bike'];

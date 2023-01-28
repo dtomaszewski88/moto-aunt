@@ -6,7 +6,7 @@ import { map } from 'lodash';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { signIn } from 'next-auth/react';
-import { NexusGenFieldTypes } from 'nexus-typegen';
+
 import React from 'react';
 
 import Auction from '@/components/Bikes/Auction';
@@ -16,6 +16,7 @@ import Spec from '@/components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from '@/lib/apollo';
 import prisma from '@/lib/prisma';
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {

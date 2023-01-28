@@ -3,8 +3,10 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid';
 import clsx from 'clsx';
 import { Badge, Spinner, TextInput } from 'flowbite-react';
 import Link from 'next/link';
-import { NexusGenFieldTypes } from 'nexus-typegen';
+
 import { ChangeEventHandler, useState } from 'react';
+
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 const SEARCH_BIKES_QUERY = gql`
   query searchBikesQuery($search: String) {

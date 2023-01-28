@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "ts-node --transpile-only ./graphql/schema",
-    "build": "npm run build:nexus-typegen && next build",
+    "prebuild": "ts-node ./graphql/schema",
+    "build": "next build",
     "build-vercel": "yarn prebuild && yarn build",
     "start": "next start",
     "lint": "next lint",

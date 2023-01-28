@@ -8,8 +8,10 @@ import { format, parseISO } from 'date-fns';
 import { Button, Table } from 'flowbite-react';
 import { slice, times } from 'lodash';
 import Link from 'next/link';
-import { NexusGenFieldTypes } from 'nexus-typegen';
+
 import React, { useMemo, useState } from 'react';
+
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 type AuctionsTableProps = {
   auctions: NexusGenFieldTypes['Auction'][];

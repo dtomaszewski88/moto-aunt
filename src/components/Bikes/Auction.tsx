@@ -2,9 +2,10 @@ import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 import { format, parseISO } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NexusGenFieldTypes, NexusGenObjects } from 'nexus-typegen';
 
 import React from 'react';
+
+import { NexusGenFieldTypes, NexusGenObjects } from 'graphql/nexus-typegen';
 
 type AuctionProps = {
   auction: NexusGenObjects['Auction'];

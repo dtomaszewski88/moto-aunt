@@ -1,11 +1,11 @@
 import clsx from 'clsx';
 import { countBy, filter } from 'lodash';
 
-import { NexusGenFieldTypes } from 'nexus-typegen';
 import React, { useMemo, useState } from 'react';
 
 import AuctionsChart from '@/components/Charts/AuctionsChart';
 import PriceChart from '@/components/Charts/PriceChart';
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 import AuctionsTable from './AuctionsTable';
 import MainChartSummary from './MainChartHeader';

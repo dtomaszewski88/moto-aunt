@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { NexusGenFieldTypes } from 'nexus-typegen';
+
 import React from 'react';
 
 import Auction from '@/components/Bikes/Auction';
@@ -9,6 +9,7 @@ import PricingData from '@/components/Bikes/PricingData';
 import Spec from '@/components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from '@/lib/apollo';
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {

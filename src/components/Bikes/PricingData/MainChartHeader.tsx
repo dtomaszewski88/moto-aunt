@@ -3,8 +3,10 @@ import { format, parseISO } from 'date-fns';
 
 import { maxBy, meanBy, minBy } from 'lodash';
 import Link from 'next/link';
-import { NexusGenFieldTypes } from 'nexus-typegen';
+
 import React from 'react';
+
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 type MainChartSummaryProps = {
   auctions: NexusGenFieldTypes['Auction'][];

@@ -1,9 +1,10 @@
 import { rand, randDomainName, randNumber, randPastDate, randSlug, seed } from '@ngneat/falso';
 import { differenceInDays, format, parseISO, sub } from 'date-fns';
 import { chain, findLast, map, meanBy, times } from 'lodash';
-import { NexusGenFieldTypes } from 'nexus-typegen';
 
 import resolveConfig from 'tailwindcss/resolveConfig';
+
+import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 import tailwindConfig from 'tailwind.config.js';
 

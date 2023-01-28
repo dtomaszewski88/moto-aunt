@@ -21,13 +21,17 @@
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "env.d.ts"],
   "exclude": ["node_modules"],
-  "ts-node": {
+  "ts-node": {     
+    "compilerOptions": {       
+      "esModuleInterop": true,       
+      "target": "esnext",       
+      "module": "commonjs",       
+      "strict": true    
+      },    
     "files": true,
-    "compilerOptions": {
-      "module": "commonjs"
-    }
+    "transpileOnly": true   
   },
   "files": [
-    "node_modules/@types/nexus-typegen/index.d.ts",
+    "./graphql/nexus-typegen.d.ts",
   ],
 }
