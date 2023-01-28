@@ -119,8 +119,8 @@ export const BikesQuery = extendType({
           .split(' ')
           .compact()
           .map((searchTerm) => [
-            { model: { contains: searchTerm } },
-            { make: { contains: searchTerm } }
+            { model: { contains: searchTerm, mode: 'insensitive' as const } },
+            { make: { contains: searchTerm, mode: 'insensitive' as const } }
           ])
           .flatten()
           .value();

@@ -1,21 +1,21 @@
 import { gql } from '@apollo/client';
+
 import { Button } from 'flowbite-react';
 
 import { map } from 'lodash';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import { NexusGenFieldTypes } from 'nexus-typegen';
 import React from 'react';
 
-import Auction from 'components/Bikes/Auction';
-import PricingData from 'components/Bikes/PricingData';
-import { getFakeAuctions } from 'components/Bikes/PricingData/utils';
-import Spec from 'components/Bikes/Spec';
+import Auction from '@/components/Bikes/Auction';
+import PricingData from '@/components/Bikes/PricingData';
+import { getFakeAuctions } from '@/components/Bikes/PricingData/utils';
+import Spec from '@/components/Bikes/Spec';
 
-import { addApolloState, initializeApollo } from 'lib/apollo';
-import prisma from 'lib/prisma';
+import { addApolloState, initializeApollo } from '@/lib/apollo';
+import prisma from '@/lib/prisma';
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {
@@ -126,7 +126,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
                 <Button onClick={() => signIn()}>Sign In</Button>
               </div>
             </div>
-            <div className='blur-[6px] select-none'>
+            <div className='blur-[6px] select-none flex flex-col gap-8'>
               <PricingData auctions={auctions} />
             </div>
           </div>

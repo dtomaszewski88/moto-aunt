@@ -4,11 +4,11 @@ import Head from 'next/head';
 import { NexusGenFieldTypes } from 'nexus-typegen';
 import React from 'react';
 
-import Auction from 'components/Bikes/Auction';
-import PricingData from 'components/Bikes/PricingData';
-import Spec from 'components/Bikes/Spec';
+import Auction from '@/components/Bikes/Auction';
+import PricingData from '@/components/Bikes/PricingData';
+import Spec from '@/components/Bikes/Spec';
 
-import { addApolloState, initializeApollo } from 'lib/apollo';
+import { addApolloState, initializeApollo } from '@/lib/apollo';
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {

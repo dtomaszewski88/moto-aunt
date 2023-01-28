@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 import { Session } from 'next-auth';
 import { getSession } from 'next-auth/react';
 
-import prisma from '../lib/prisma';
+import prisma from '../src/lib/prisma';
 
 export type ContextReq = {
   cookies: Record<string, string>;

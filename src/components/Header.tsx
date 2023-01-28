@@ -5,12 +5,14 @@ import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
 
 import HeaderLink from './HeaderLink';
+import Search from './Search';
 
 const Header: React.FC = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
 
+  const isRoot = isActive('/');
   return (
     <Navbar fluid={true} rounded={true}>
       <Navbar.Brand className='flex-1'>
@@ -32,6 +34,12 @@ const Header: React.FC = () => {
           </HeaderLink>
         </Navbar.Collapse>
       </div>
+      {!isRoot && (
+        <div className='flex-2'>
+          <Search size='sm' />
+        </div>
+      )}
+      {!isRoot && <div className='flex-1'></div>}
       <div className='flex md:order-2 flex-1 justify-end'>
         {!session && <Button onClick={() => router.push('/api/auth/signin')}>Sign In</Button>}
         {session && <Button onClick={() => signOut()}>Sign Out</Button>}
