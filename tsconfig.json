@@ -28,6 +28,6 @@
     }
   },
   "files": [
-    "./@types/nexus-typegen.d.ts",
+    "node_modules/@types/nexus-typegen/index.d.ts",
   ],
 }
