@@ -16,16 +16,12 @@ export type ContextArgs = {
 export type Context = {
   prisma: PrismaClient;
   session: Session | null;
-  sessionId: string | null;
 };
 
 export async function createContext({ req }: ContextArgs): Promise<Context> {
-  const sessionId = req.cookies['next-auth.session-token'] ?? null;
   const session = await getSession({ req });
-
   return {
     prisma,
-    sessionId,
     session
   };
 }

@@ -1,10 +1,11 @@
 import { gql } from '@apollo/client';
-import { Button, Navbar } from 'flowbite-react';
+import { Button } from 'flowbite-react';
 
+import { map } from 'lodash';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { unstable_getServerSession } from 'next-auth/next';
+import { signIn } from 'next-auth/react';
 import { NexusGenFieldTypes } from 'nexus-typegen';
 import React from 'react';
 
@@ -14,7 +15,7 @@ import { getFakeAuctions } from 'components/Bikes/PricingData/utils';
 import Spec from 'components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from 'lib/apollo';
-import { authOptions } from 'pages/api/auth/[...nextauth]';
+import prisma from 'lib/prisma';
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {
@@ -52,23 +53,21 @@ const BIKE_DETAILS_QUERY = gql`
   }
 `;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { params, req, res } = context;
+export async function getStaticPaths() {
+  const bikes = await prisma.bike.findMany();
+  const paths = map(bikes, ({ id }) => ({ params: { id } }));
+
+  return {
+    paths: paths,
+    fallback: false // can also be true or 'blocking'
+  };
+}
+
+export const getStaticProps: GetServerSideProps = async (context) => {
+  const { params } = context;
   if (!params?.id) {
     return {
       notFound: true
-    };
-  }
-
-  const session = await unstable_getServerSession(req, res, authOptions);
-
-  if (session) {
-    return {
-      redirect: {
-        basePath: true,
-        destination: `/bikes/p/${params.id}`,
-        status: 307
-      }
     };
   }
 
@@ -97,8 +96,6 @@ type BikeDetailsProps = {
 const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
   const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
   const auctions = getFakeAuctions(bikeDetails.id);
-  const router = useRouter();
-
   return (
     <>
       <Head>
@@ -126,7 +123,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
                 <h3 className='text-lg font-semibold text-blue-900'>
                   You need to be a registered user to see the price analysis
                 </h3>
-                <Button onClick={() => router.push('/api/auth/signin')}>Sign In</Button>
+                <Button onClick={() => signIn()}>Sign In</Button>
               </div>
             </div>
             <div className='blur-[6px] select-none'>

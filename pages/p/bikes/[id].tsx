@@ -1,7 +1,6 @@
 import { gql } from '@apollo/client';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { unstable_getServerSession } from 'next-auth/next';
 import { NexusGenFieldTypes } from 'nexus-typegen';
 import React from 'react';
 
@@ -10,7 +9,6 @@ import PricingData from 'components/Bikes/PricingData';
 import Spec from 'components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from 'lib/apollo';
-import { authOptions } from 'pages/api/auth/[...nextauth]';
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {
@@ -57,22 +55,11 @@ const BIKE_DETAILS_QUERY = gql`
 `;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { params, req, res } = context;
+  const { params } = context;
 
   if (!params?.id) {
     return {
       notFound: true
-    };
-  }
-
-  const session = await unstable_getServerSession(req, res, authOptions);
-  console.log('session', session);
-  if (!session) {
-    return {
-      redirect: {
-        destination: `/bikes/${params.id}`,
-        status: 307
-      }
     };
   }
 
