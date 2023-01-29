@@ -1,9 +1,10 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
-import { format, parseISO } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import React from 'react';
+
+import { formatISOtoUTC } from '@/lib/utils';
 
 import { NexusGenFieldTypes, NexusGenObjects } from 'graphql/nexus-typegen';
 
@@ -21,7 +22,7 @@ const Auction: React.FC<AuctionProps> = ({ auction, model }) => {
   return (
     <div className='rounded-md relative overflow-hidden' key={auction.id}>
       <div className='absolute top-0 left-0 right-0 bg-neutral-900 bg-opacity-75 text-blue-100  grid grid-cols-2 p-2'>
-        <span>{format(parseISO(auction.createdOn), 'dd/MM/yyyy')}</span>
+        <span>{formatISOtoUTC(auction.createdOn)}</span>
         <Link className='flex items-center gap-2 justify-self-end' href={auction.link as string}>
           {auction.domain} <ArrowTopRightOnSquareIcon className='w-4 h-4' />
         </Link>

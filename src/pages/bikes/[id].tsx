@@ -1,7 +1,7 @@
-import { gql } from '@apollo/client';
-
+import { format as formatFNS, parseISO } from 'date-fns';
+import { format, formatInTimeZone } from 'date-fns-tz';
 import { Button } from 'flowbite-react';
-
+// import { format as formatFNS, parseISO } from 'date-fns';
 import { map } from 'lodash';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
@@ -11,56 +11,20 @@ import React from 'react';
 
 import Auction from '@/components/Bikes/Auction';
 import PricingData from '@/components/Bikes/PricingData';
-import { getFakeAuctions } from '@/components/Bikes/PricingData/utils';
 import Spec from '@/components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from '@/lib/apollo';
-import prisma from '@/lib/prisma';
+import { getAllBikeIds, getBikeDetails } from '@/lib/prisma';
+import fakeAuctions from 'data/fakeAuctions.json';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
-const BIKE_DETAILS_QUERY = gql`
-  query bikeDetailsQuery($id: String!) {
-    bikeDetails(id: $id) {
-      id
-      imageUrl
-      make
-      model
-      year
-      type
-      displacement
-      engine
-      power
-      torque
-      top_speed
-      cooling
-      gearbox
-      transmission
-      fuel_consumption
-      front_brakes
-      rear_brakes
-      dry_weight
-      total_weight
-      seat_height
-      fuel_capacity
-      auctionsRecent {
-        id
-        link
-        price
-        imageUrl
-        createdOn
-        domain
-      }
-    }
-  }
-`;
-
 export async function getStaticPaths() {
-  const bikes = await prisma.bike.findMany();
+  const bikes = await getAllBikeIds();
   const paths = map(bikes, ({ id }) => ({ params: { id } }));
 
   return {
     paths: paths,
-    fallback: false // can also be true or 'blocking'
+    fallback: 'blocking' // can also be true or 'blocking'
   };
 }
 
@@ -74,19 +38,16 @@ export const getStaticProps: GetServerSideProps = async (context) => {
 
   const apolloClient = initializeApollo(null, context);
 
-  const { data } = await apolloClient.query({
-    query: BIKE_DETAILS_QUERY,
-    variables: { id: params?.id }
-  });
+  const bikeDetails = await getBikeDetails(params.id as string);
 
-  if (!data.bikeDetails) {
+  if (!bikeDetails) {
     return {
       notFound: true
     };
   }
 
   return addApolloState(apolloClient, {
-    props: { bikeDetails: data.bikeDetails }
+    props: { bikeDetails }
   });
 };
 
@@ -96,7 +57,7 @@ type BikeDetailsProps = {
 
 const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
   const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
-  const auctions = getFakeAuctions(bikeDetails.id);
+
   return (
     <>
       <Head>
@@ -107,7 +68,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
           {`Latest Deals for ${pageTitle}`}
         </h1>
         <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
-          {bikeDetails?.auctionsRecent?.slice(0, 6).map((auction) => {
+          {bikeDetails?.auctionsRecent?.map((auction) => {
             if (!auction) {
               return null;
             }
@@ -128,7 +89,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
               </div>
             </div>
             <div className='blur-[6px] select-none flex flex-col gap-8'>
-              <PricingData auctions={auctions} />
+              <PricingData auctions={fakeAuctions} />
             </div>
           </div>
         </div>

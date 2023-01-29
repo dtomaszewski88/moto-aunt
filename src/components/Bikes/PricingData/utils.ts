@@ -4,6 +4,7 @@ import { chain, findLast, map, meanBy, times } from 'lodash';
 
 import resolveConfig from 'tailwindcss/resolveConfig';
 
+import { formatISOtoUTC, formatToUTC } from '@/lib/utils';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 import tailwindConfig from 'tailwind.config.js';
@@ -29,26 +30,6 @@ export const colors = [
   { value: twcolors['rose']['500'], name: 'rose-500' }
 ];
 
-export const getFakeAuctions = (bikeId: string) => {
-  seed(bikeId);
-  const auctionDomains = randDomainName({ length: 10 });
-  const auctionCount = randNumber({ min: 20, max: 50 });
-  const basePrice = randNumber({ min: 1000, max: 20000 });
-
-  return times(auctionCount, (index) => {
-    const domain = rand(auctionDomains);
-    return {
-      id: `bikeId-${index}`,
-      imageUrl: '',
-      bikeId: bikeId,
-      domain: domain,
-      link: `https://${domain}/${randSlug()}`,
-      price: basePrice * randNumber({ min: 0.5, max: 1.5, fraction: 3 }),
-      createdOn: randPastDate().toISOString()
-    };
-  });
-};
-
 export const getAuctionData = (auctions: NexusGenFieldTypes['Auction'][], baseDate: Date) => {
   return chain(auctions)
     .groupBy('domain')
@@ -56,7 +37,7 @@ export const getAuctionData = (auctions: NexusGenFieldTypes['Auction'][], baseDa
       return {
         domain: key,
         points: map(auctionGroup, (auction) => ({
-          label: `${auction.domain} / ${format(parseISO(auction.createdOn), 'yyyy-MM-dd')}`,
+          label: `${auction.domain} / ${formatISOtoUTC(auction.createdOn)}`,
           x: differenceInDays(parseISO(auction.createdOn), baseDate) as number,
           y: auction.price as number
         }))
@@ -80,11 +61,11 @@ export const getAvgPriceData = (
   const meanPrice = meanBy(auctions, 'price');
 
   const groupedData = chain(auctions)
-    .groupBy((auction) => format(parseISO(auction.createdOn), 'yyyy-MM'))
+    .groupBy((auction) => formatISOtoUTC(auction.createdOn, 'yyyy-MM'))
     .value();
 
   const meanByMonth = chain(totalMonts)
-    .times((index) => format(sub(baseDate, { months: index }), 'yyyy-MM'))
+    .times((index) => formatToUTC(sub(baseDate, { months: index }), 'yyyy-MM'))
     .reverse()
     .map((dataPoint, index) => {
       const entries = groupedData[dataPoint];

@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 import React from 'react';
 
+import { formatISOtoUTC } from '@/lib/utils';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 type MainChartSummaryProps = {
@@ -29,7 +30,7 @@ const MainChartSummary: React.FC<MainChartSummaryProps> = ({ auctions }) => {
           Min Price:
           <span className='font-bold'>
             {formatter.format(minPriceAuction?.price as number)} /{' '}
-            {format(parseISO(minPriceAuction?.createdOn), 'yyyy-MM-dd')}
+            {formatISOtoUTC(minPriceAuction?.createdOn)}
           </span>
           <ArrowTopRightOnSquareIcon className='w-4 h-4' />
         </Link>
@@ -42,7 +43,7 @@ const MainChartSummary: React.FC<MainChartSummaryProps> = ({ auctions }) => {
           Max Price:
           <span className='font-bold'>
             {formatter.format(maxPriceAuction?.price as number)} /{' '}
-            {format(parseISO(maxPriceAuction?.createdOn), 'yyyy-MM-dd')}
+            {formatISOtoUTC(maxPriceAuction?.createdOn)}
           </span>
           <ArrowTopRightOnSquareIcon className='w-4 h-4' />
         </Link>
