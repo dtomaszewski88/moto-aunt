@@ -1,5 +1,4 @@
-import { rand, randDomainName, randNumber, randPastDate, randSlug, seed } from '@ngneat/falso';
-import { differenceInDays, format, parseISO, sub } from 'date-fns';
+import { differenceInDays, parseISO, sub } from 'date-fns';
 import { chain, findLast, map, meanBy, times } from 'lodash';
 
 import resolveConfig from 'tailwindcss/resolveConfig';

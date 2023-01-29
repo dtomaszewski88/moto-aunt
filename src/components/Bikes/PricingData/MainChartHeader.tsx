@@ -1,5 +1,4 @@
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
-import { format, parseISO } from 'date-fns';
 
 import { maxBy, meanBy, minBy } from 'lodash';
 import Link from 'next/link';

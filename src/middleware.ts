@@ -1,4 +1,3 @@
-import { some } from 'lodash';
 import { NextFetchEvent, NextMiddleware, NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 
@@ -10,7 +9,7 @@ const toPublic = (path: string) => path.replace('/p/', '/');
 export function withAuthorization(middleware: NextMiddleware, routes: string[]) {
   return async (request: NextRequest, next: NextFetchEvent) => {
     const pathname = request.nextUrl.pathname;
-    if (some(routes, (value) => pathname.startsWith(value))) {
+    if (routes.some((value) => pathname.startsWith(value))) {
       const token = await getToken({
         req: request
       });
@@ -23,7 +22,7 @@ export function withAuthorization(middleware: NextMiddleware, routes: string[]) 
       return NextResponse.redirect(url);
     }
 
-    if (some(routes, (value) => pathname.startsWith(toPublic(value)))) {
+    if (routes.some((value) => pathname.startsWith(toPublic(value)))) {
       const token = await getToken({
         req: request
       });
