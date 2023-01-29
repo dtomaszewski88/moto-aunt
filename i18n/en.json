@@ -1,0 +1,37 @@
+{
+  "common.Xoffers": "{amount} offers",
+  "common.signIn": "Sign In",
+  "common.signOut": "Sign Out",
+  "header.link.home": "Home Page",
+  "home.title": "Find your best deal",
+  "home.searchPlaceholder": "Start typing... (i.e. Yamaha)",
+  "bikeDetails.title.latestDeals": "Latest Deals for {pageTitle}",
+  "bikeDetails.title.priceData": "Price analysis",
+  "bikeDetails.title.spec": "Technical Specs",
+  "bikeDetails.signInPrompt": "You need to be a registered user to see the price analysis",
+
+  "bikeDetails.specification": "Specification",
+  "bikeDetails.type": "Type",
+  "bikeDetails.displacement": "Displacement",
+  "bikeDetails.engine": "Engine",
+  "bikeDetails.power": "Power",
+  "bikeDetails.torque": "Torque",
+  "bikeDetails.consumption": "Consumption",
+  "bikeDetails.tankCapacity": "Tank capacity",
+  "bikeDetails.gearbox": "Gearbox",
+  "bikeDetails.transmission": "Transmission",
+  "bikeDetails.topSpeed": "Top speed",
+  "bikeDetails.dryWeight": "Dry weight",
+  "bikeDetails.wetWeight": "Wet weight",
+
+  "priceChart.totalAverage": "Total Average",
+  "priceChart.monthlyAverage": "Monthly Average",
+  "priceChart.minPrice": "Min Price",
+  "priceChart.avgPrice": "Avg Price",
+  "priceChart.maxPrice": "Max Price",
+
+  "auctionsTable.date": "Date",
+  "auctionsTable.price": "Price",
+  "auctionsTable.diffFromAvg": "Diff From Avg",
+  "auctionsTable.link": "Link"
+}

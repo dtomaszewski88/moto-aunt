@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { countBy, filter } from 'lodash';
 
 import React, { useMemo, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import AuctionsChart from '@/components/Charts/AuctionsChart';
 import PriceChart from '@/components/Charts/PriceChart';
@@ -16,6 +17,7 @@ type PricingDataProps = {
 };
 
 const PricingData: React.FC<PricingDataProps> = ({ auctions }) => {
+  const { formatMessage: t } = useIntl();
   const now = useMemo(() => new Date(), []);
   const [chartFilter, setChartFilter] = useState<Record<string, boolean>>({});
 

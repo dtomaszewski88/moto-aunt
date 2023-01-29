@@ -9,6 +9,7 @@ import { slice, times } from 'lodash';
 import Link from 'next/link';
 
 import React, { useMemo, useState } from 'react';
+import { useIntl } from 'react-intl';
 
 import { formatISOtoUTC } from '@/lib/utils';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
@@ -25,6 +26,7 @@ const formatter = new Intl.NumberFormat('en-GB', {
 });
 
 const AuctionsTable: React.FC<AuctionsTableProps> = (props) => {
+  const { formatMessage: t } = useIntl();
   const [page, setPage] = useState(0);
   const { auctions, meanPrice, pageSize = 5 } = props;
 
@@ -50,10 +52,10 @@ const AuctionsTable: React.FC<AuctionsTableProps> = (props) => {
       <div className='md:col-span-8 order-3 col-span-12 md:order-1'>
         <Table>
           <Table.Head>
-            <Table.HeadCell>Date</Table.HeadCell>
-            <Table.HeadCell>Price</Table.HeadCell>
-            <Table.HeadCell>Diff From Avg</Table.HeadCell>
-            <Table.HeadCell>Link</Table.HeadCell>
+            <Table.HeadCell>{t({ id: 'auctionsTable.date' })}</Table.HeadCell>
+            <Table.HeadCell>{t({ id: 'auctionsTable.price' })}</Table.HeadCell>
+            <Table.HeadCell>{t({ id: 'auctionsTable.diffFromAvg' })}</Table.HeadCell>
+            <Table.HeadCell>{t({ id: 'auctionsTable.link' })}</Table.HeadCell>
           </Table.Head>
           <Table.Body className='divide-y bg-red-500 rounded-none'>
             {pagedAuctions?.map((auction) => {

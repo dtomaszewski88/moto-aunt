@@ -1,0 +1,37 @@
+{
+  "common.Xoffers": "{amount} tilbyder",
+  "common.signIn": "Log ind",
+  "common.signOut": "Log ud",
+  "header.link.home": "Hjemmeside",
+  "home.title": "Find DIT Bedste Tilbud",
+  "home.searchPlaceholder": "Begynd at skrive ... (dvs. Yamaha)",
+  "bikeDetails.title.latestDeals": "Seneste tilbud til {pageTitle}",
+  "bikeDetails.title.priceData": "Prisanalyse",
+  "bikeDetails.title.spec": "Tekniske specifikationer",
+  "bikeDetails.signInPrompt": "Du skal være en registreret bruger for at se prisanalysen",
+
+  "bikeDetails.specification": "Specifikation",
+  "bikeDetails.type": "Type",
+  "bikeDetails.displacement": "Forskydning",
+  "bikeDetails.engine": "Motor",
+  "bikeDetails.power": "Strøm",
+  "bikeDetails.torque": "Drejningsmoment",
+  "bikeDetails.consumption": "Forbrug",
+  "bikeDetails.tankCapacity": "Tankkapacitet",
+  "bikeDetails.gearbox": "Gearkasse",
+  "bikeDetails.transmission": "Smitte",
+  "bikeDetails.topSpeed": "Tophastighed",
+  "bikeDetails.dryWeight": "Tørvægt",
+  "bikeDetails.wetWeight": "Våd vægt",
+
+  "priceChart.totalAverage": "Samlet gennemsnit",
+  "priceChart.monthlyAverage": "Månedligt gennemsnit",
+  "priceChart.minPrice": "Min pris",
+  "priceChart.avgPrice": "AVG Pris",
+  "priceChart.maxPrice": "Maksimal pris",
+
+  "auctionsTable.date": "Dato",
+  "auctionsTable.price": "Pris",
+  "auctionsTable.diffFromAvg": "Diff fra Avg",
+  "auctionsTable.link": "Link"
+}

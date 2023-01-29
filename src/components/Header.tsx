@@ -1,19 +1,35 @@
 import clsx from 'clsx';
-import { Button, Navbar } from 'flowbite-react';
+import { Button, Dropdown, Navbar } from 'flowbite-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import HeaderLink from './HeaderLink';
 import Search from './Search';
-
 const Header: React.FC = () => {
   const router = useRouter();
+  const { asPath, locale } = router;
+  console.log('router', router);
   const { data: session } = useSession();
+  const { formatMessage: t } = useIntl();
   const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
-
   const isRoot = isActive('/');
+  const flags: Record<string, React.ReactNode> = {
+    en: <Image alt='UK flag' className='rounded-md' height={30} src='/images/en.svg' width={50} />,
+    da: (
+      <Image
+        alt='Denmark flag'
+        className='rounded-md'
+        height={30}
+        src='/images/da.svg'
+        width={39}
+      />
+    )
+  };
+
   return (
     <Navbar fluid={true} rounded={true}>
       <div className='w-full grid grid-cols-12 gap-2  items-center'>
@@ -39,7 +55,7 @@ const Header: React.FC = () => {
           })}>
           <Navbar.Collapse className='md:mt-0 -mt-4'>
             <HeaderLink href='/' isActive={isActive('/')}>
-              Home
+              {t({ id: 'header.link.home' })}
             </HeaderLink>
           </Navbar.Collapse>
         </div>
@@ -48,9 +64,25 @@ const Header: React.FC = () => {
             <Search size='sm' />
           </div>
         )}
-        <div className='md:col-span-3 col-span-6 flex md:order-4 order-2 md:row-start-auto row-start-1 md:justify-self-end justify-self-center'>
-          {!session && <Button onClick={() => router.push('/api/auth/signin')}>Sign In</Button>}
-          {session && <Button onClick={() => signOut()}>Sign Out</Button>}
+        <div className='md:col-span-3 col-span-6 flex md:order-4 order-2 md:row-start-auto row-start-1 md:justify-self-end justify-self-center items-center gap-4'>
+          {!session && (
+            <Button onClick={() => router.push('/api/auth/signin')}>
+              {t({ id: 'common.signIn' })}
+            </Button>
+          )}
+          {session && <Button onClick={() => signOut()}>{t({ id: 'common.signOut' })}</Button>}
+          <Dropdown inline={true} label={flags[locale ?? 'en']}>
+            <Dropdown.Item>
+              <Link href={asPath} locale='en'>
+                <span className='flex items-center gap-2 justify-between'>EN{flags['en']}</span>
+              </Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Link href={asPath} locale='da'>
+                <span className='flex items-center gap-2 justify-between'>DA{flags['da']}</span>
+              </Link>
+            </Dropdown.Item>
+          </Dropdown>
         </div>
       </div>
     </Navbar>

@@ -6,10 +6,11 @@ import { map, noop } from 'lodash';
 import { useEffect, useRef, useState } from 'react';
 import { Chart } from 'react-chartjs-2';
 
+import { useIntl } from 'react-intl';
+
 import type { ChartArea, ChartData } from 'chart.js';
 
 import { AuctionData, DataPoint } from './types';
-
 export const options = {
   responsive: true,
   maintainAspectRatio: false,
@@ -102,6 +103,7 @@ interface PriceChartProps {
 
 export default function PriceChart(props: PriceChartProps) {
   const { auctionsData, avgPriceData, className, totalAvgData } = props;
+  const { formatMessage: t } = useIntl();
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: []
@@ -141,7 +143,7 @@ export default function PriceChart(props: PriceChartProps) {
           borderColor: 'rgba(23, 101, 248 , 1)',
           type: 'line' as any,
           xAxisID: 'xAverageAxis',
-          label: 'Total Average',
+          label: t({ id: 'priceChart.totalAverage' }),
           data: totalAvgData,
           borderCapStyle: 'round',
           elements: {
@@ -154,7 +156,7 @@ export default function PriceChart(props: PriceChartProps) {
           ...chartColors,
           type: 'line' as any,
           xAxisID: 'xAverageAxis',
-          label: 'Monthly Average',
+          label: t({ id: 'priceChart.monthlyAverage' }),
           data: avgPriceData,
           borderCapStyle: 'round',
           fill: true,
@@ -169,7 +171,7 @@ export default function PriceChart(props: PriceChartProps) {
     };
 
     setChartData(chartData as any);
-  }, [avgPriceData, totalAvgData, auctionsData]);
+  }, [avgPriceData, totalAvgData, auctionsData, t]);
 
   return (
     <div className={clsx(className, 'relative -mr-[10px] -ml-[10px] h-72')}>

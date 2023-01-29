@@ -6,6 +6,8 @@ import Link from 'next/link';
 
 import { ChangeEventHandler, useState } from 'react';
 
+import { useIntl } from 'react-intl';
+
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 const SEARCH_BIKES_QUERY = gql`
@@ -26,6 +28,7 @@ type SearchProps = {
 };
 
 export default function Search(props: SearchProps) {
+  const { formatMessage: t } = useIntl();
   const { size = 'lg' } = props;
   const [search, setSearch] = useState('');
 
@@ -44,7 +47,7 @@ export default function Search(props: SearchProps) {
       <TextInput
         className='font-bold'
         id='bike-search'
-        placeholder='Start typing...'
+        placeholder={t({ id: 'home.searchPlaceholder' })}
         sizing={size}
         type='text'
         value={search}
@@ -72,7 +75,9 @@ export default function Search(props: SearchProps) {
                     className='flex px-4 py-2 hover:bg-blue-50 justify-between items-center'
                     href={`/bikes/${bike.id}`}>
                     <span>{`${bike.year} ${bike.make} ${bike.model}`}</span>
-                    <Badge color='success'>{bike.auctionsCount} Offers</Badge>
+                    <Badge color='success'>
+                      {t({ id: 'common.Xoffers' }, { amount: bike.auctionsCount })}
+                    </Badge>
                   </Link>
                 </li>
               ))}

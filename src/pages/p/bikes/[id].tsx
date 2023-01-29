@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import Auction from '@/components/Bikes/Auction';
 import PricingData from '@/components/Bikes/PricingData';
@@ -90,6 +91,7 @@ type BikeDetailsProps = {
 const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails }) => {
   const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
 
+  const { formatMessage: t } = useIntl();
   return (
     <>
       <Head>
@@ -97,6 +99,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails }) => {
       </Head>
       <article className='flex items-center flex-col gap-8'>
         <h1 className='text-2xl font-semibold text-blue-900 mt-4 mb-12'>
+          {t({ id: 'bikeDetails.title.latestDeals' }, { pageTitle })}
           {`Latest Deals for ${pageTitle}`}
         </h1>
         <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
@@ -109,10 +112,14 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails }) => {
           })}
         </section>
         <div className='max-w-6xl lg:w-[72rem] flex items-center flex-col gap-8'>
-          <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Price analysis</h2>
+          <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>
+            {t({ id: 'bikeDetails.title.priceData' })}
+          </h2>
           <PricingData auctions={auctions} />
         </div>
-        <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Technical Specs</h2>
+        <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>
+          {t({ id: 'bikeDetails.title.spec' })}
+        </h2>
         <Spec bikeDetails={bikeDetails} />
       </article>
     </>

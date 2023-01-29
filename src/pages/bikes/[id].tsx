@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { signIn } from 'next-auth/react';
 
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import Auction from '@/components/Bikes/Auction';
 import PricingData from '@/components/Bikes/PricingData';
@@ -53,6 +54,7 @@ type BikeDetailsProps = {
 };
 
 const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
+  const { formatMessage: t } = useIntl();
   const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
 
   return (
@@ -62,7 +64,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
       </Head>
       <article className='flex items-center flex-col gap-8'>
         <h1 className='text-2xl font-semibold text-blue-900 mt-4 mb-12'>
-          {`Latest Deals for ${pageTitle}`}
+          {t({ id: 'bikeDetails.title.latestDeals' }, { pageTitle })}
         </h1>
         <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
           {bikeDetails?.auctionsRecent?.map((auction) => {
@@ -74,15 +76,17 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
           })}
         </section>
         <div className='max-w-6xl lg:w-[72rem] flex items-center flex-col gap-8'>
-          <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Price analysis</h2>
+          <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>
+            {t({ id: 'bikeDetails.title.priceData' })}
+          </h2>
 
           <div className='relative flex items-center flex-col gap-8'>
             <div className='absolute inset-0 z-50 flex justify-center items-start pt-40'>
               <div className='bg-white p-4 shadow-md rounded-md justify-center items-center flex flex-col gap-8'>
                 <h3 className='text-lg font-semibold text-blue-900'>
-                  You need to be a registered user to see the price analysis
+                  {t({ id: 'bikeDetails.signInPrompt' })}
                 </h3>
-                <Button onClick={() => signIn()}>Sign In</Button>
+                <Button onClick={() => signIn()}>{t({ id: 'common.signIn' })}</Button>
               </div>
             </div>
             <div className='blur-[6px] select-none flex flex-col gap-8'>
@@ -90,7 +94,9 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
             </div>
           </div>
         </div>
-        <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>Technical Specs</h2>
+        <h2 className='text-xl font-semibold text-blue-900 mt-12 mb-8'>
+          {t({ id: 'bikeDetails.title.spec' })}
+        </h2>
         <Spec bikeDetails={bikeDetails} />
       </article>
     </>

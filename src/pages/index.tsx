@@ -1,8 +1,11 @@
 import Head from 'next/head';
 
+import { useIntl } from 'react-intl';
+
 import Search from '@/components/Search';
 
 export default function Home() {
+  const { formatMessage: t } = useIntl();
   return (
     <>
       <Head>
@@ -13,7 +16,7 @@ export default function Home() {
       </Head>
       <main>
         <h1 className='text-center text-4xl text-blue-900 text-bold mb-16 mt-8'>
-          Find your best deal
+          {t({ id: 'home.title' })}
         </h1>
         <div className='flex justify-center'>
           <Search />

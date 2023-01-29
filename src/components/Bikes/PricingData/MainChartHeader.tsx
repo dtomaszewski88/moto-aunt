@@ -4,6 +4,7 @@ import { maxBy, meanBy, minBy } from 'lodash';
 import Link from 'next/link';
 
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import { formatISOtoUTC } from '@/lib/utils';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
@@ -18,6 +19,7 @@ const formatter = new Intl.NumberFormat('en-GB', {
 });
 
 const MainChartSummary: React.FC<MainChartSummaryProps> = ({ auctions }) => {
+  const { formatMessage: t } = useIntl();
   const meanPrice = meanBy(auctions, 'price');
   const maxPriceAuction = maxBy(auctions, 'price');
   const minPriceAuction = minBy(auctions, 'price');
@@ -26,7 +28,7 @@ const MainChartSummary: React.FC<MainChartSummaryProps> = ({ auctions }) => {
     <>
       <div className='col-span-4 text-sm p-4 pt-2'>
         <Link className='flex gap-2 items-center' href={minPriceAuction?.link as string}>
-          Min Price:
+          {t({ id: 'priceChart.minPrice' })}:
           <span className='font-bold'>
             {formatter.format(minPriceAuction?.price as number)} /{' '}
             {formatISOtoUTC(minPriceAuction?.createdOn)}
@@ -35,11 +37,12 @@ const MainChartSummary: React.FC<MainChartSummaryProps> = ({ auctions }) => {
         </Link>
       </div>
       <div className='col-span-4 text-sm p-4 pt-2 justify-self-center items-center'>
-        Average Price: <span className='font-bold'>{formatter.format(meanPrice)}</span>
+        {t({ id: 'priceChart.avgPrice' })}:{' '}
+        <span className='font-bold'>{formatter.format(meanPrice)}</span>
       </div>
       <div className='col-span-4 text-sm p-4 pt-2 text-red-800 justify-self-end'>
         <Link className='flex gap-2 items-center' href={maxPriceAuction?.link as string}>
-          Max Price:
+          {t({ id: 'priceChart.maxPrice' })}:
           <span className='font-bold'>
             {formatter.format(maxPriceAuction?.price as number)} /{' '}
             {formatISOtoUTC(maxPriceAuction?.createdOn)}
