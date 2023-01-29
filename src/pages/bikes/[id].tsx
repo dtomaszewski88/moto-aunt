@@ -9,11 +9,11 @@ import React from 'react';
 
 import Auction from '@/components/Bikes/Auction';
 import PricingData from '@/components/Bikes/PricingData';
-import { getFakeAuctions } from '@/components/Bikes/PricingData/utils';
 import Spec from '@/components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from '@/lib/apollo';
 import { getAllBikeIds, getBikeDetails } from '@/lib/prisma';
+import fakeAuctions from 'data/fakeAuctions.json';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
 
 export async function getStaticPaths() {
@@ -55,7 +55,6 @@ type BikeDetailsProps = {
 
 const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
   const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
-  const auctions = getFakeAuctions(bikeDetails.id);
   return (
     <>
       <Head>
@@ -87,7 +86,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
               </div>
             </div>
             <div className='blur-[6px] select-none flex flex-col gap-8'>
-              <PricingData auctions={auctions} />
+              <PricingData auctions={fakeAuctions} />
             </div>
           </div>
         </div>
