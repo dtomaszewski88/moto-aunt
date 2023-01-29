@@ -12,11 +12,11 @@ import Search from './Search';
 const Header: React.FC = () => {
   const router = useRouter();
   const { asPath, locale } = router;
-  console.log('router', router);
   const { data: session } = useSession();
   const { formatMessage: t } = useIntl();
   const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
   const isRoot = isActive('/');
+
   const flags: Record<string, React.ReactNode> = {
     en: <Image alt='UK flag' className='rounded-md' height={30} src='/images/en.svg' width={50} />,
     da: (
