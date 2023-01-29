@@ -53,7 +53,7 @@ export default function AuctionsChart(props: AuctionsChartProps) {
     setChartData(chartData as any);
   }, [auctionsData]);
   return (
-    <div className={clsx(className, 'w-full h-full relative')}>
+    <div className={clsx(className, 'w-full h-full relative flex justify-center')}>
       <Chart data={chartData as any} options={options as any} ref={chartRef} type='doughnut' />
     </div>
   );

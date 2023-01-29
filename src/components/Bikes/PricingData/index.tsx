@@ -76,9 +76,9 @@ const PricingData: React.FC<PricingDataProps> = ({ auctions }) => {
         />
         <MainChartSummary auctions={auctions} />
       </section>
-      <section className='grid max-w-6xl lg:w-[72rem] grid-cols-12 gap-8'>
+      <section className='grid max-w-6xl lg:w-[72rem] w-full grid-cols-12 gap-8'>
         <AuctionsTable auctions={auctions} meanPrice={meanPrice} />
-        <div className='col-span-4 row-span-2 min-h-[28rem]'>
+        <div className='md:col-span-4 col-span-12 row-span-2 min-h-[28rem] flex order-1 items-center justify-center'>
           <AuctionsChart auctionsData={filteredAuctionData} />
         </div>
       </section>

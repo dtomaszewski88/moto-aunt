@@ -40,7 +40,7 @@ export default function Search(props: SearchProps) {
   const isEmptyResult = data?.bikes.length === 0;
 
   return (
-    <div className={clsx('min-w-[32rem] relative', { 'min-w-[32rem]': size === 'lg' })}>
+    <div className={clsx('relative', { 'min-w-[32rem]': size === 'lg' })}>
       <TextInput
         className='font-bold'
         id='bike-search'

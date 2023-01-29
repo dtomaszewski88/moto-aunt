@@ -47,7 +47,7 @@ const AuctionsTable: React.FC<AuctionsTableProps> = (props) => {
 
   return (
     <>
-      <div className='col-span-8'>
+      <div className='md:col-span-8 order-3 col-span-12 md:order-1'>
         <Table>
           <Table.Head>
             <Table.HeadCell>Date</Table.HeadCell>
@@ -88,7 +88,7 @@ const AuctionsTable: React.FC<AuctionsTableProps> = (props) => {
           </Table.Body>
         </Table>
       </div>
-      <div className='col-span-8 order-4'>
+      <div className='md:col-span-8 order-4 col-span-12 flex justify-center md:justify-start'>
         <Button.Group onClick={handleAuctionsPage}>
           {times(pageCount, (index) => {
             return (
