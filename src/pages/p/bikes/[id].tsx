@@ -100,7 +100,6 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails }) => {
       <article className='flex items-center flex-col gap-8'>
         <h1 className='text-2xl font-semibold text-blue-900 mt-4 mb-12'>
           {t({ id: 'bikeDetails.title.latestDeals' }, { pageTitle })}
-          {`Latest Deals for ${pageTitle}`}
         </h1>
         <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
           {bikeDetails?.auctionsRecent?.slice(0, 6).map((auction) => {
