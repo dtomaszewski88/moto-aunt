@@ -41,7 +41,9 @@ type SeedAuctionData = {
   id: string;
   imageUrl?: string;
   link: string;
+  mileage: number;
   price: number;
+  productionYear: number;
 };
 
 async function main() {
@@ -52,7 +54,7 @@ async function main() {
 
   const bikeSeedData = chain([...data1, ...data2])
     .shuffle()
-    .slice(0, 4)
+    .slice(0, 8)
     .map((item) => ({ ...item, year: parseInt(item.year), id: id(), imageUrl: rand(bikeImages) }))
     .map(
       pick([
@@ -87,6 +89,8 @@ async function main() {
       const basePrice = randNumber({ min: 1000, max: 20000 });
       times(auctionCount, () => {
         const domain = rand(auctionDomains);
+        const productionYear = randNumber({ min: current.year, max: current.year + 3 });
+        const yearDiff = productionYear - current.year;
         result.push({
           id: id(),
           imageUrl: rand(auctionImages),
@@ -94,7 +98,9 @@ async function main() {
           domain: domain,
           link: `https://${domain}/${randSlug()}`,
           price: basePrice * randNumber({ min: 0.5, max: 1.5, fraction: 3 }),
-          createdOn: randPastDate().toISOString()
+          createdOn: randPastDate().toISOString(),
+          mileage: randNumber({ min: 1000, max: 20000 }) + yearDiff * 10000,
+          productionYear
         });
       });
       return result;

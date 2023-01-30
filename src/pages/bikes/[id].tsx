@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
   return {
     paths: paths,
-    fallback: 'blocking' // can also be true or 'blocking'
+    fallback: 'blocking'
   };
 }
 

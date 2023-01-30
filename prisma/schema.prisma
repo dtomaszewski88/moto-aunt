@@ -93,4 +93,6 @@ model Auction {
   domain String
   link String
   price Float
+  mileage Int
+  productionYear Int
 }

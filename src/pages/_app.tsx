@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { SessionProvider } from 'next-auth/react';
 
-import { IntlProvider, useIntl } from 'react-intl';
+import { IntlProvider } from 'react-intl';
 
 import Layout from '@/components/Layout';
 import { useApollo } from '@/lib/apollo';
