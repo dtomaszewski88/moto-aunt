@@ -20,8 +20,7 @@ export const authOptions = {
       clientSecret: process.env.NEXTAUTH_SECRET
     })
   ],
-  adapter: PrismaAdapter(prisma),
-  callbacks: {}
+  adapter: PrismaAdapter(prisma)
 };
 
 const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, authOptions);

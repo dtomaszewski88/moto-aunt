@@ -7,6 +7,7 @@ type Auction {
   domain: String
   id: String!
   imageUrl: String
+  isFavourite: Boolean
   link: String
   price: Float
 }
@@ -42,8 +43,23 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `dat
 """
 scalar DateTime
 
+type Mutation {
+  addFavourites(id: String!): User
+  removeFavourites(id: String!): User
+}
+
 type Query {
-  auctions(bikeId: String!, page: Int): [Auction]
+  auctions(bikeId: String!): [Auction]
   bikeDetails(id: String!): Bike
   bikes(search: String): [Bike]
+  user: User
+}
+
+type User {
+  email: String
+  emailVerified: DateTime
+  favourites: [Auction]
+  id: String!
+  image: String
+  name: String
 }

@@ -56,6 +56,7 @@ type BikeDetailsProps = {
 const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
   const { formatMessage: t } = useIntl();
   const pageTitle = `${bikeDetails.make} ${bikeDetails.model} ${bikeDetails.year}`;
+  const recentAuctions = bikeDetails?.auctionsRecent as NexusGenFieldTypes['Auction'][];
 
   return (
     <>
@@ -67,7 +68,7 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ bikeDetails }) => {
           {t({ id: 'bikeDetails.title.latestDeals' }, { pageTitle })}
         </h1>
         <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
-          {bikeDetails?.auctionsRecent?.map((auction) => {
+          {recentAuctions?.map((auction) => {
             if (!auction) {
               return null;
             }

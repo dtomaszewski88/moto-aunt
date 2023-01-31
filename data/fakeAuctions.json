@@ -2,6 +2,7 @@
   {
     "id": "bikeId-0",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
     "link": "https://occaecati.name/quaerat-repellat-aliquid-numquam-voluptatibus",
@@ -11,6 +12,7 @@
   {
     "id": "bikeId-1",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
     "link": "https://est.name/enim-ducimus-magnam-maiores-dolores-nemo",
@@ -20,6 +22,7 @@
   {
     "id": "bikeId-2",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "error.com",
     "link": "https://error.com/hic-deserunt-nihil-quos-rerum-ducimus-in-consequatur-sed",
@@ -29,6 +32,7 @@
   {
     "id": "bikeId-3",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "error.com",
     "link": "https://error.com/vitae-asperiores-repellat-labore",
@@ -38,6 +42,7 @@
   {
     "id": "bikeId-4",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/ullam-quos-quas-esse",
@@ -47,6 +52,7 @@
   {
     "id": "bikeId-5",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
     "link": "https://est.name/necessitatibus-vitae-sapiente-deserunt-quaerat-fugiat-consequuntur-necessitatibus-sunt-tenetur",
@@ -56,6 +62,7 @@
   {
     "id": "bikeId-6",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
     "link": "https://est.name/quaerat-cupiditate-quae-ipsum-beatae-maiores-cupiditate-voluptate",
@@ -65,6 +72,7 @@
   {
     "id": "bikeId-7",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
     "link": "https://ipsum.info/excepturi-consequuntur-consectetur-consequuntur-nemo",
@@ -74,6 +82,7 @@
   {
     "id": "bikeId-8",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/deserunt-ipsum-ullam-eos-nostrum",
@@ -83,6 +92,7 @@
   {
     "id": "bikeId-9",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.org",
     "link": "https://fugit.org/voluptatibus-excepturi-laborum-nemo-nemo-quaerat-unde-in",
@@ -92,6 +102,7 @@
   {
     "id": "bikeId-10",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
     "link": "https://consectetur.dev/ducimus-nihil-reiciendis-deserunt-repellat-et-necessitatibus-quas-quos",
@@ -101,6 +112,7 @@
   {
     "id": "bikeId-11",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
     "link": "https://ipsum.info/possimus-commodi-et-unde-esse-aliquid-asperiores-fugit-sed",
@@ -110,6 +122,7 @@
   {
     "id": "bikeId-12",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/asperiores-qui-neque-quasi",
@@ -119,6 +132,7 @@
   {
     "id": "bikeId-13",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
     "link": "https://fugit.name/at-fugiat-at-quia-quae-qui-maiores-unde",
@@ -128,6 +142,7 @@
   {
     "id": "bikeId-14",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
     "link": "https://ipsum.info/quaerat-fugit-voluptatem-doloribus-excepturi-quasi",
@@ -137,6 +152,7 @@
   {
     "id": "bikeId-15",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
     "link": "https://fugit.name/voluptatem-labore-asperiores-necessitatibus-fugiat-nulla-exercitationem-sequi",
@@ -146,6 +162,7 @@
   {
     "id": "bikeId-16",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
     "link": "https://necessitatibus.net/consequuntur-non-sequi-cupiditate-id-quas-est",
@@ -155,6 +172,7 @@
   {
     "id": "bikeId-17",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
     "link": "https://ipsum.info/dolores-dicta-eos-eos-doloribus-voluptatem",
@@ -164,6 +182,7 @@
   {
     "id": "bikeId-18",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
     "link": "https://occaecati.biz/omnis-et-vitae-cupiditate-cupiditate-numquam",
@@ -173,6 +192,7 @@
   {
     "id": "bikeId-19",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.org",
     "link": "https://fugit.org/sit-facilis-consectetur-vitae-nulla-fugiat-reiciendis-id",
@@ -182,6 +202,7 @@
   {
     "id": "bikeId-20",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
     "link": "https://occaecati.name/ducimus-magnam-labore-unde-nemo",
@@ -191,6 +212,7 @@
   {
     "id": "bikeId-21",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
     "link": "https://consectetur.dev/et-sed-blanditiis-nulla-fugit-sunt-magnam",
@@ -200,6 +222,7 @@
   {
     "id": "bikeId-22",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
     "link": "https://fugit.name/quae-vitae-reiciendis-vel-consequatur",
@@ -209,6 +232,7 @@
   {
     "id": "bikeId-23",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
     "link": "https://est.name/quae-laborum-neque-cupiditate-eos-aut-sunt",
@@ -218,6 +242,7 @@
   {
     "id": "bikeId-24",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
     "link": "https://necessitatibus.net/ducimus-blanditiis-id",
@@ -227,6 +252,7 @@
   {
     "id": "bikeId-25",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
     "link": "https://necessitatibus.net/aut-quia-sequi-error",
@@ -236,6 +262,7 @@
   {
     "id": "bikeId-26",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
     "link": "https://ipsum.info/error-nulla-quasi-commodi-ducimus-sapiente-enim",
@@ -245,6 +272,7 @@
   {
     "id": "bikeId-27",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/qui-sapiente-qui-consequatur-blanditiis-ullam-vel-sed-quos-error",
@@ -254,6 +282,7 @@
   {
     "id": "bikeId-28",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
     "link": "https://fugit.name/nulla-in-sapiente-esse",
@@ -263,6 +292,7 @@
   {
     "id": "bikeId-29",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
     "link": "https://necessitatibus.net/beatae-voluptate-non-nihil",
@@ -272,6 +302,7 @@
   {
     "id": "bikeId-30",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
     "link": "https://occaecati.biz/hic-possimus-nemo-laborum-hic-aliquid-possimus-eos-qui",
@@ -281,6 +312,7 @@
   {
     "id": "bikeId-31",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/rerum-quos-quia-error-unde-et-consequatur",
@@ -290,6 +322,7 @@
   {
     "id": "bikeId-32",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/aut-nemo-fugiat-sed-quaerat-cupiditate-vel-aut",
@@ -299,6 +332,7 @@
   {
     "id": "bikeId-33",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
     "link": "https://consectetur.dev/maiores-magnam-voluptatibus-eos-deserunt",
@@ -308,6 +342,7 @@
   {
     "id": "bikeId-34",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
     "link": "https://fugit.name/deserunt-in-magnam-eos-voluptatem-nemo-consectetur",
@@ -317,6 +352,7 @@
   {
     "id": "bikeId-35",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
     "link": "https://occaecati.biz/nihil-vitae-occaecati-sunt-consequuntur-voluptatibus-aut",
@@ -326,6 +362,7 @@
   {
     "id": "bikeId-36",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "error.com",
     "link": "https://error.com/in-tenetur-at-quos-beatae-est-unde",
@@ -335,6 +372,7 @@
   {
     "id": "bikeId-37",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
     "link": "https://est.name/sed-repellat-tenetur-error",
@@ -344,6 +382,7 @@
   {
     "id": "bikeId-38",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
     "link": "https://occaecati.name/sapiente-qui-nemo",
@@ -353,6 +392,7 @@
   {
     "id": "bikeId-39",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/quae-hic-possimus",
@@ -362,6 +402,7 @@
   {
     "id": "bikeId-40",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
     "link": "https://est.name/neque-excepturi-blanditiis-vel-voluptate",
@@ -371,6 +412,7 @@
   {
     "id": "bikeId-41",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
     "link": "https://occaecati.name/nulla-at-qui-rerum-necessitatibus-voluptatibus",
@@ -380,6 +422,7 @@
   {
     "id": "bikeId-42",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
     "link": "https://tenetur.org/consectetur-ducimus-doloribus-ullam-dolores-quia-occaecati",
@@ -389,6 +432,7 @@
   {
     "id": "bikeId-43",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
     "link": "https://occaecati.biz/neque-sunt-beatae-ducimus-beatae-occaecati-necessitatibus-hic",
@@ -398,6 +442,7 @@
   {
     "id": "bikeId-44",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.org",
     "link": "https://fugit.org/tenetur-beatae-facilis-laborum",
@@ -407,6 +452,7 @@
   {
     "id": "bikeId-45",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
     "link": "https://consectetur.dev/necessitatibus-ducimus-occaecati-quaerat-quas-unde-consequatur",
@@ -416,6 +462,7 @@
   {
     "id": "bikeId-46",
     "imageUrl": "",
+    "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
     "link": "https://necessitatibus.net/sunt-labore-esse-tenetur",

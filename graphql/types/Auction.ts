@@ -1,4 +1,4 @@
-import { extendType, intArg, nonNull, objectType, stringArg } from 'nexus';
+import { extendType, nonNull, objectType, stringArg } from 'nexus';
 
 export const Auction = objectType({
   name: 'Auction',
@@ -11,6 +11,39 @@ export const Auction = objectType({
     });
     t.string('domain');
     t.float('price');
+    t.field('isFavourite', {
+      type: 'Boolean',
+      resolve: async (_parent, _args, ctx) => {
+        const email = ctx?.session?.user?.email;
+        if (!email) {
+          return false;
+        }
+
+        const user = await ctx.prisma.user.findUnique({
+          where: {
+            email
+          }
+        });
+
+        if (!user) {
+          return false;
+        }
+
+        const users = await ctx.prisma.auction
+          .findUnique({
+            where: {
+              id: _parent.id as string
+            }
+          })
+          .users({
+            where: {
+              id: user.id
+            }
+          });
+
+        return Boolean(users?.length);
+      }
+    });
   }
 });
 
@@ -20,8 +53,7 @@ export const AuctionsQuery = extendType({
     t.list.field('auctions', {
       type: 'Auction',
       args: {
-        bikeId: nonNull(stringArg()),
-        page: intArg()
+        bikeId: nonNull(stringArg())
       },
       authorize: async (_root, _args, ctx) => Boolean(ctx.session),
       async resolve(_parent, args, ctx) {

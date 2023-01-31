@@ -76,7 +76,15 @@ export interface NexusGenObjects {
     type?: string | null; // String
     year?: number | null; // Int
   }
+  Mutation: {};
   Query: {};
+  User: { // root type
+    email?: string | null; // String
+    emailVerified?: NexusGenScalars['DateTime'] | null; // DateTime
+    id: string; // String!
+    image?: string | null; // String
+    name?: string | null; // String
+  }
 }
 
 export interface NexusGenInterfaces {
@@ -95,6 +103,7 @@ export interface NexusGenFieldTypes {
     domain: string | null; // String
     id: string; // String!
     imageUrl: string | null; // String
+    isFavourite: boolean | null; // Boolean
     link: string | null; // String
     price: number | null; // Float
   }
@@ -123,10 +132,23 @@ export interface NexusGenFieldTypes {
     type: string | null; // String
     year: number | null; // Int
   }
+  Mutation: { // field return type
+    addFavourites: NexusGenRootTypes['User'] | null; // User
+    removeFavourites: NexusGenRootTypes['User'] | null; // User
+  }
   Query: { // field return type
     auctions: Array<NexusGenRootTypes['Auction'] | null> | null; // [Auction]
     bikeDetails: NexusGenRootTypes['Bike'] | null; // Bike
     bikes: Array<NexusGenRootTypes['Bike'] | null> | null; // [Bike]
+    user: NexusGenRootTypes['User'] | null; // User
+  }
+  User: { // field return type
+    email: string | null; // String
+    emailVerified: NexusGenScalars['DateTime'] | null; // DateTime
+    favourites: Array<NexusGenRootTypes['Auction'] | null> | null; // [Auction]
+    id: string; // String!
+    image: string | null; // String
+    name: string | null; // String
   }
 }
 
@@ -136,6 +158,7 @@ export interface NexusGenFieldTypeNames {
     domain: 'String'
     id: 'String'
     imageUrl: 'String'
+    isFavourite: 'Boolean'
     link: 'String'
     price: 'Float'
   }
@@ -164,18 +187,38 @@ export interface NexusGenFieldTypeNames {
     type: 'String'
     year: 'Int'
   }
+  Mutation: { // field return type name
+    addFavourites: 'User'
+    removeFavourites: 'User'
+  }
   Query: { // field return type name
     auctions: 'Auction'
     bikeDetails: 'Bike'
     bikes: 'Bike'
+    user: 'User'
+  }
+  User: { // field return type name
+    email: 'String'
+    emailVerified: 'DateTime'
+    favourites: 'Auction'
+    id: 'String'
+    image: 'String'
+    name: 'String'
   }
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    addFavourites: { // args
+      id: string; // String!
+    }
+    removeFavourites: { // args
+      id: string; // String!
+    }
+  }
   Query: {
     auctions: { // args
       bikeId: string; // String!
-      page?: number | null; // Int
     }
     bikeDetails: { // args
       id: string; // String!

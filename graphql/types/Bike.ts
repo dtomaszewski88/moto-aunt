@@ -3,8 +3,6 @@ import { extendType, nonNull, objectType, stringArg } from 'nexus';
 
 import { Context } from 'graphql/context';
 
-import { Auction } from './Auction';
-
 export const Bike = objectType({
   name: 'Bike',
   definition(t) {
@@ -46,7 +44,7 @@ export const Bike = objectType({
       }
     });
     t.list.field('auctionsRecent', {
-      type: Auction,
+      type: 'Auction',
       async resolve(_parent, _args, ctx) {
         return ctx.prisma.bike
           .findUnique({

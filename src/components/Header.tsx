@@ -1,3 +1,4 @@
+import { gql, useQuery } from '@apollo/client';
 import clsx from 'clsx';
 import { Button, Dropdown, Navbar } from 'flowbite-react';
 import Image from 'next/image';
@@ -9,6 +10,22 @@ import { useIntl } from 'react-intl';
 
 import HeaderLink from './HeaderLink';
 import Search from './Search';
+
+const USER_QUERY = gql`
+  query UserQuery {
+    user {
+      email
+      emailVerified
+      id
+      image
+      name
+      favourites {
+        id
+      }
+    }
+  }
+`;
+
 const Header: React.FC = () => {
   const router = useRouter();
   const { asPath, locale } = router;
@@ -16,7 +33,7 @@ const Header: React.FC = () => {
   const { formatMessage: t } = useIntl();
   const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
   const isRoot = isActive('/');
-
+  const { data, loading } = useQuery(USER_QUERY);
   const flags: Record<string, React.ReactNode> = {
     en: <Image alt='UK flag' className='rounded-md' height={30} src='/images/en.svg' width={50} />,
     da: (

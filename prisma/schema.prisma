@@ -48,6 +48,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  auctions      Auction[]
 }
 
 model VerificationToken {
@@ -60,39 +61,40 @@ model VerificationToken {
 }
 
 model Bike {
-  id      String @id @default(cuid())
-  make    String
-  model   String
-  year    Int
-  type    String
-  imageUrl String?
-  displacement String?
-  engine String?
-  power String?
-  torque String?
-  top_speed String?
-  cooling String?
-  gearbox String?
-  transmission String?
-  fuel_consumption String?
-  front_brakes String?
-  rear_brakes String?
-  dry_weight String?
-  total_weight String?
-  seat_height String?
-  fuel_capacity String?
+  id                String @id @default(cuid())
+  make              String
+  model             String
+  year              Int
+  type              String
+  imageUrl          String?
+  displacement      String?
+  engine            String?
+  power             String?
+  torque            String?
+  top_speed         String?
+  cooling           String?
+  gearbox           String?
+  transmission      String?
+  fuel_consumption  String?
+  front_brakes      String?
+  rear_brakes       String?
+  dry_weight        String?
+  total_weight      String?
+  seat_height       String?
+  fuel_capacity     String?
   auctions Auction[]
 }
 
 model Auction {
-  id     String @id @default(cuid())
-  bike   Bike @relation(fields: [bikeId], references: [id])
-  bikeId String
-  imageUrl String?
-  createdOn DateTime
-  domain String
-  link String
-  price Float
-  mileage Int
-  productionYear Int
+  id              String @id @default(cuid())
+  bike            Bike @relation(fields: [bikeId], references: [id])
+  users           User[]
+  bikeId          String
+  imageUrl        String?
+  createdOn       DateTime
+  domain          String
+  link            String
+  price           Float
+  mileage         Int
+  productionYear  Int
 }
