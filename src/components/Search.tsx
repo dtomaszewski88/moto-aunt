@@ -61,7 +61,7 @@ export default function Search(props: SearchProps) {
   }, [setIsOpen]);
 
   return (
-    <div className={clsx('relative', { 'min-w-[32rem]': size === 'lg' })}>
+    <div className={clsx('relative', { 'md:min-w-[32rem] w-full': size === 'lg' })}>
       <TextInput
         className='font-bold'
         id='bike-search'
