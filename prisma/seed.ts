@@ -54,7 +54,7 @@ async function main() {
 
   const bikeSeedData = chain([...data1, ...data2])
     .shuffle()
-    .slice(0, 8)
+    .slice(0, 12)
     .map((item) => ({ ...item, year: parseInt(item.year), id: id(), imageUrl: rand(bikeImages) }))
     .map(
       pick([
