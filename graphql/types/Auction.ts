@@ -44,6 +44,18 @@ export const Auction = objectType({
         return Boolean(users?.length);
       }
     });
+    t.field('bike', {
+      type: 'Bike',
+      resolve: async (_parent, _args, ctx) => {
+        return await ctx.prisma.auction
+          .findUnique({
+            where: {
+              id: _parent.id as string
+            }
+          })
+          .bike();
+      }
+    });
   }
 });
 
@@ -55,7 +67,7 @@ export const AuctionsQuery = extendType({
       args: {
         bikeId: nonNull(stringArg())
       },
-      authorize: async (_root, _args, ctx) => Boolean(ctx.session),
+      authorize: async (_parent, _args, ctx) => Boolean(ctx.session),
       async resolve(_parent, args, ctx) {
         const { bikeId } = args;
 

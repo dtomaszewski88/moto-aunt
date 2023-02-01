@@ -1,4 +1,4 @@
-import { ApolloCache, gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 
@@ -11,18 +11,6 @@ import Spec from '@/components/Bikes/Spec';
 
 import { addApolloState, initializeApollo } from '@/lib/apollo';
 import { NexusGenFieldTypes } from 'graphql/nexus-typegen';
-
-const AUCTIONS_RECENT_QUERY = gql`
-  query AuctionsRecentQuery($id: String!) {
-    bikeDetails(id: $id) {
-      id
-      auctionsRecent {
-        id
-        isFavourite
-      }
-    }
-  }
-`;
 
 const BIKE_DETAILS_QUERY = gql`
   query bikeDetailsQuery($id: String!) {
@@ -69,60 +57,6 @@ const BIKE_DETAILS_QUERY = gql`
   }
 `;
 
-const ADD_FAVOURITE_MUTATION = gql`
-  mutation AddFavourites($auctionId: String!) {
-    addFavourites(id: $auctionId) {
-      id
-      favourites {
-        id
-        isFavourite
-      }
-    }
-  }
-`;
-
-const REMOVE_FAVOURITE_MUTATION = gql`
-  mutation AddFavourites($auctionId: String!) {
-    removeFavourites(id: $auctionId) {
-      id
-      favourites {
-        id
-        isFavourite
-      }
-    }
-  }
-`;
-
-type MutationResult = {
-  addFavourites?: NexusGenFieldTypes['User'];
-  removeFavourites?: NexusGenFieldTypes['User'];
-};
-
-const updateAuctionsCache =
-  (mutationName: 'addFavourites' | 'removeFavourites') =>
-  (cache: ApolloCache<unknown>, result: { data?: MutationResult | null }) => {
-    const { data } = result;
-    const updatePayload = data?.[mutationName]?.favourites;
-    updatePayload?.forEach((auction) => {
-      cache.writeQuery({
-        query: gql`
-          query UpdateFavourites($id: Int!) {
-            auction(id: $id) {
-              id
-              isFavourite
-            }
-          }
-        `,
-        data: {
-          auction
-        },
-        variables: {
-          id: auction?.id
-        }
-      });
-    });
-  };
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { params } = context;
 
@@ -166,29 +100,6 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails, id }) 
   const recentAuctions = details?.auctionsRecent as NexusGenFieldTypes['Auction'][];
 
   const { formatMessage: t } = useIntl();
-  const [addFavorite] = useMutation(ADD_FAVOURITE_MUTATION, {
-    update: updateAuctionsCache('addFavourites')
-  });
-
-  const [removeFavourite] = useMutation(REMOVE_FAVOURITE_MUTATION, {
-    refetchQueries: [{ query: AUCTIONS_RECENT_QUERY, variables: { id } }]
-  });
-
-  const handleFavouriteClick = (auction: NexusGenFieldTypes['Auction']) => {
-    if (auction.isFavourite) {
-      removeFavourite({
-        variables: {
-          auctionId: auction.id
-        }
-      });
-      return;
-    }
-    addFavorite({
-      variables: {
-        auctionId: auction.id
-      }
-    });
-  };
 
   return (
     <>
@@ -200,13 +111,13 @@ const BikeDetails: React.FC<BikeDetailsProps> = ({ auctions, bikeDetails, id }) 
           {t({ id: 'bikeDetails.title.latestDeals' }, { pageTitle })}
         </h1>
         <section className='flex gap-6 flex-wrap justify-center max-w-6xl'>
-          {recentAuctions?.slice(0, 6).map((auction) => {
+          {recentAuctions?.map((auction) => {
             return (
               <Auction
                 auction={auction}
+                bikeId={bikeDetails.id}
                 key={auction.id}
                 model={bikeDetails.model}
-                onFavClick={handleFavouriteClick}
               />
             );
           })}

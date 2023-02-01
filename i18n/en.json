@@ -2,9 +2,16 @@
   "common.Xoffers": "{amount} offers",
   "common.signIn": "Sign In",
   "common.signOut": "Sign Out",
+
   "header.link.home": "Home Page",
+  "header.link.favourites": "Favourites ({count})",
+
   "home.title": "Find your best deal",
   "home.searchPlaceholder": "Start typing... (i.e. Yamaha)",
+
+  "favourites.pageTitle": "Favourites",
+  "favourites.title": "Your favourite auctions",
+
   "bikeDetails.title.latestDeals": "Latest Deals for {pageTitle}",
   "bikeDetails.title.priceData": "Price analysis",
   "bikeDetails.title.spec": "Technical Specs",

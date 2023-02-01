@@ -99,6 +99,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
   Auction: { // field return type
+    bike: NexusGenRootTypes['Bike'] | null; // Bike
     createdOn: NexusGenScalars['DateTime'] | null; // DateTime
     domain: string | null; // String
     id: string; // String!
@@ -146,6 +147,7 @@ export interface NexusGenFieldTypes {
     email: string | null; // String
     emailVerified: NexusGenScalars['DateTime'] | null; // DateTime
     favourites: Array<NexusGenRootTypes['Auction'] | null> | null; // [Auction]
+    favouritesCount: number | null; // Int
     id: string; // String!
     image: string | null; // String
     name: string | null; // String
@@ -154,6 +156,7 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenFieldTypeNames {
   Auction: { // field return type name
+    bike: 'Bike'
     createdOn: 'DateTime'
     domain: 'String'
     id: 'String'
@@ -201,6 +204,7 @@ export interface NexusGenFieldTypeNames {
     email: 'String'
     emailVerified: 'DateTime'
     favourites: 'Auction'
+    favouritesCount: 'Int'
     id: 'String'
     image: 'String'
     name: 'String'

@@ -2,9 +2,15 @@
   "common.Xoffers": "{amount} tilbyder",
   "common.signIn": "Log ind",
   "common.signOut": "Log ud",
+
   "header.link.home": "Hjemmeside",
+  "header.link.favourites": "Favoritter ({count})",
+
   "home.title": "Find DIT Bedste Tilbud",
   "home.searchPlaceholder": "Begynd at skrive ... (dvs. Yamaha)",
+
+  "favourites.pageTitle": "Favoritter",
+  "favourites.title": "Dine yndlingsauktioner",
   "bikeDetails.title.latestDeals": "Seneste tilbud til {pageTitle}",
   "bikeDetails.title.priceData": "Prisanalyse",
   "bikeDetails.title.spec": "Tekniske specifikationer",

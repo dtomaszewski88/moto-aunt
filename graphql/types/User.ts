@@ -10,6 +10,22 @@ export const User = objectType({
       type: 'DateTime'
     });
     t.string('image');
+    t.field('favouritesCount', {
+      type: 'Int',
+      async resolve(_parent, _args, ctx) {
+        const result = await ctx.prisma.user.findUnique({
+          where: {
+            id: _parent.id as string
+          },
+          include: {
+            _count: {
+              select: { auctions: true }
+            }
+          }
+        });
+        return result?._count.auctions ?? null;
+      }
+    });
     t.list.field('favourites', {
       type: 'Auction',
       async resolve(_parent, _args, ctx) {

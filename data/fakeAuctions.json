@@ -2,6 +2,7 @@
   {
     "id": "bikeId-0",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
@@ -12,6 +13,7 @@
   {
     "id": "bikeId-1",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
@@ -22,6 +24,7 @@
   {
     "id": "bikeId-2",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "error.com",
@@ -32,6 +35,7 @@
   {
     "id": "bikeId-3",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "error.com",
@@ -42,6 +46,7 @@
   {
     "id": "bikeId-4",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -52,6 +57,7 @@
   {
     "id": "bikeId-5",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
@@ -62,6 +68,7 @@
   {
     "id": "bikeId-6",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
@@ -72,6 +79,7 @@
   {
     "id": "bikeId-7",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
@@ -82,6 +90,7 @@
   {
     "id": "bikeId-8",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -92,6 +101,7 @@
   {
     "id": "bikeId-9",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.org",
@@ -102,6 +112,7 @@
   {
     "id": "bikeId-10",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
@@ -112,6 +123,7 @@
   {
     "id": "bikeId-11",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
@@ -122,6 +134,7 @@
   {
     "id": "bikeId-12",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -132,6 +145,7 @@
   {
     "id": "bikeId-13",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
@@ -142,6 +156,7 @@
   {
     "id": "bikeId-14",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
@@ -152,6 +167,7 @@
   {
     "id": "bikeId-15",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
@@ -162,6 +178,7 @@
   {
     "id": "bikeId-16",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
@@ -172,6 +189,7 @@
   {
     "id": "bikeId-17",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
@@ -182,6 +200,7 @@
   {
     "id": "bikeId-18",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
@@ -192,6 +211,7 @@
   {
     "id": "bikeId-19",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.org",
@@ -202,6 +222,7 @@
   {
     "id": "bikeId-20",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
@@ -212,6 +233,7 @@
   {
     "id": "bikeId-21",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
@@ -222,6 +244,7 @@
   {
     "id": "bikeId-22",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
@@ -232,6 +255,7 @@
   {
     "id": "bikeId-23",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
@@ -242,6 +266,7 @@
   {
     "id": "bikeId-24",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
@@ -252,6 +277,7 @@
   {
     "id": "bikeId-25",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
@@ -262,6 +288,7 @@
   {
     "id": "bikeId-26",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "ipsum.info",
@@ -272,6 +299,7 @@
   {
     "id": "bikeId-27",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -282,6 +310,7 @@
   {
     "id": "bikeId-28",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
@@ -292,6 +321,7 @@
   {
     "id": "bikeId-29",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",
@@ -302,6 +332,7 @@
   {
     "id": "bikeId-30",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
@@ -312,6 +343,7 @@
   {
     "id": "bikeId-31",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -322,6 +354,7 @@
   {
     "id": "bikeId-32",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -332,6 +365,7 @@
   {
     "id": "bikeId-33",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
@@ -342,6 +376,7 @@
   {
     "id": "bikeId-34",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.name",
@@ -352,6 +387,7 @@
   {
     "id": "bikeId-35",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
@@ -362,6 +398,7 @@
   {
     "id": "bikeId-36",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "error.com",
@@ -372,6 +409,7 @@
   {
     "id": "bikeId-37",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
@@ -382,6 +420,7 @@
   {
     "id": "bikeId-38",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
@@ -392,6 +431,7 @@
   {
     "id": "bikeId-39",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -402,6 +442,7 @@
   {
     "id": "bikeId-40",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "est.name",
@@ -412,6 +453,7 @@
   {
     "id": "bikeId-41",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.name",
@@ -422,6 +464,7 @@
   {
     "id": "bikeId-42",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "tenetur.org",
@@ -432,6 +475,7 @@
   {
     "id": "bikeId-43",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "occaecati.biz",
@@ -442,6 +486,7 @@
   {
     "id": "bikeId-44",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "fugit.org",
@@ -452,6 +497,7 @@
   {
     "id": "bikeId-45",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "consectetur.dev",
@@ -462,6 +508,7 @@
   {
     "id": "bikeId-46",
     "imageUrl": "",
+    "bike": null,
     "isFavourite": false,
     "bikeId": "b031a42c-a9ee-4486-9aee-994efb8f59e7",
     "domain": "necessitatibus.net",

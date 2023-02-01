@@ -19,9 +19,7 @@ const USER_QUERY = gql`
       id
       image
       name
-      favourites {
-        id
-      }
+      favouritesCount
     }
   }
 `;
@@ -33,7 +31,10 @@ const Header: React.FC = () => {
   const { formatMessage: t } = useIntl();
   const isActive: (pathname: string) => boolean = (pathname) => router.pathname === pathname;
   const isRoot = isActive('/');
-  const { data, loading } = useQuery(USER_QUERY);
+  const { data } = useQuery(USER_QUERY);
+
+  const count = data?.user?.favouritesCount;
+
   const flags: Record<string, React.ReactNode> = {
     en: <Image alt='UK flag' className='rounded-md' height={30} src='/images/en.svg' width={50} />,
     da: (
@@ -74,6 +75,11 @@ const Header: React.FC = () => {
             <HeaderLink href='/' isActive={isActive('/')}>
               {t({ id: 'header.link.home' })}
             </HeaderLink>
+            {Boolean(count) && (
+              <HeaderLink href='/favourites' isActive={isActive('/favourites')}>
+                {t({ id: 'header.link.favourites' }, { count })}
+              </HeaderLink>
+            )}
           </Navbar.Collapse>
         </div>
         {!isRoot && (

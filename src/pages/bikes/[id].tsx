@@ -7,7 +7,7 @@ import { signIn } from 'next-auth/react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import Auction from '@/components/Bikes/Auction';
+import { AuctionBasic as Auction } from '@/components/Bikes/Auction';
 import PricingData from '@/components/Bikes/PricingData';
 import Spec from '@/components/Bikes/Spec';
 

@@ -3,6 +3,7 @@
 
 
 type Auction {
+  bike: Bike
   createdOn: DateTime
   domain: String
   id: String!
@@ -59,6 +60,7 @@ type User {
   email: String
   emailVerified: DateTime
   favourites: [Auction]
+  favouritesCount: Int
   id: String!
   image: String
   name: String
